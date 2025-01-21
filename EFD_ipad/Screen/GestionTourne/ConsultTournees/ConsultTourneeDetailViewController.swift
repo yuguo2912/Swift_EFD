@@ -15,6 +15,7 @@ class ConsultTourneeDetailViewController: UIViewController {
     @IBOutlet weak var dateSpec: UILabel!
     @IBOutlet weak var DeleteButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var livreurLabel: UILabel!
     
     var tournee:  Tournees? // Variable pour recevoir le livreur sélectionné
     var tournees: [Tournees]?
@@ -23,13 +24,17 @@ class ConsultTourneeDetailViewController: UIViewController {
     override func viewDidLoad() {
             super.viewDidLoad()
             
-            // Mettre à jour les labels avec les données de la tournée
-            if let tournee = self.tournee {
-                self.nbColisLabel.text = "\(tournee.nbColis)"
-                self.destinationLabel.text = formatCoordinates(tournee.destination)
-                self.dateSpec.text = formatDateComponents(tournee.dateSpec)
-            }
+        // Mettre à jour les labels avec les données de la tournée
+        if let tournee = self.tournee {
+            self.nbColisLabel.text = "\(tournee.nbColis)"
+            self.destinationLabel.text = formatCoordinates(tournee.destination)
+            self.dateSpec.text = formatDateComponents(tournee.dateSpec)
+            
+            // Vérification si le livreur existe
+            let livreur = tournee.livreur
+            self.livreurLabel.text = "\(livreur.nom)\(livreur.prenom), \(livreur.age) ans"
         }
+    }
         
         @IBAction func modifyButtonTapped(_ sender: Any) {
             // Afficher une alerte pour permettre à l'utilisateur de modifier les informations de la tournée

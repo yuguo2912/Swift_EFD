@@ -13,13 +13,29 @@ class Tournee2ViewController: UIViewController {
     @IBOutlet weak var destinationField: UITextField!
     @IBOutlet weak var dataSpecField: UITextField!
     
+    @IBOutlet weak var livreurpicker: UIPickerView!
     
+    
+    var livreurs: [Livreur] = [] // Liste des livreurs disponibles
+    var selectedLivreur: Livreur? // Livreur sélectionné
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        livreurpicker.delegate = self
+        livreurpicker.dataSource = self
+        
+        // Charger les livreurs depuis le MockConnexionService
+        MockConnexionService.getInstance().getAllLivreur { [weak self] data in
+            guard let self = self else { return }
+            self.livreurs = data
+            self.livreurpicker.reloadAllComponents()
+        }
+        
+        // Observer l'ajout de nouveaux livreurs
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNewLivreurNotification(_:)), name: .newLivreurAdded, object: nil)
     }
+    
     @IBAction func handleTournees(_ sender: Any) {
         // Valider les champs
         guard let nbColisText = nbColisField.text,
@@ -27,14 +43,15 @@ class Tournee2ViewController: UIViewController {
               let destinationText = destinationField.text,
               let destination = parseCoordinates(from: destinationText),
               let dateSpecText = dataSpecField.text,
-              let dateSpec = parseDateComponents(from: dateSpecText) else {
+              let dateSpec = parseDateComponents(from: dateSpecText),
+              let livreur = selectedLivreur else { // Vérifier qu'un livreur est sélectionné
             // Afficher un message d'erreur si les champs sont invalides
-            showError(message: "Veuillez vérifier les informations saisies.")
+            showError(message: "Veuillez vérifier les informations saisies et sélectionner un livreur.")
             return
         }
         
-        // Créer une nouvelle tournée
-        let newTournee = Tournees(nbColis: nbColis, destination: destination, dateSpec: dateSpec)
+        // Créer une nouvelle tournée avec le livreur sélectionné
+        let newTournee = Tournees(nbColis: nbColis, destination: destination, dateSpec: dateSpec, livreur: livreur)
         
         // Ajouter la tournée dans le service
         MockConnexionService.getInstance().addTournee(newTournee)
@@ -47,12 +64,18 @@ class Tournee2ViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    // MARK: - Notification Handlers
     
+    @objc func handleNewLivreurNotification(_ notification: Notification) {
+        if let newLivreur = notification.object as? Livreur {
+            self.livreurs.append(newLivreur)
+            self.livreurpicker.reloadAllComponents()
+        }
+    }
     
     // MARK: - Helpers
     
     func parseCoordinates(from text: String) -> CLLocationCoordinate2D? {
-        // Diviser le texte en latitude et longitude
         let components = text.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
         guard components.count == 2,
               let latitude = Double(components[0]),
@@ -63,23 +86,45 @@ class Tournee2ViewController: UIViewController {
     }
     
     func parseDateComponents(from text: String) -> DateComponents? {
-        // Convertir le texte en `Date` à l'aide d'un `DateFormatter`
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         guard let date = formatter.date(from: text) else { return nil }
-        
-        // Obtenir les `DateComponents` à partir de la date
         return Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
     }
     
     func showError(message: String) {
-        // Afficher une alerte d'erreur
         let alert = UIAlertController(title: "Erreur", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .newLivreurAdded, object: nil)
+    }
 }
 
+// MARK: - UIPickerViewDataSource
+extension Tournee2ViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1 // Une seule colonne pour les livreurs
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return livreurs.count
+    }
+}
+
+// MARK: - UIPickerViewDelegate
+extension Tournee2ViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let livreur = livreurs[row]
+        return "\(livreur.prenom) \(livreur.nom)" // Afficher le nom et prénom du livreur
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedLivreur = livreurs[row] // Stocker le livreur sélectionné
+    }
+}
 extension Notification.Name {
-    static let newTourneeAdded = Notification.Name("newTourneeAdded")
+    static let newTourneeAdded = Notification.Name("newTourneeAdded") // Crée un identifiant unique pour la notification
 }
