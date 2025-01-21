@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="EFD_ipad" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBG-Ox-pmP">
+                    <rect key="frame" x="10" y="69" width="175" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Gestion des livreurs"/>
+                    <connections>
+                        <action selector="goToGestionLivreurs:" destination="-1" eventType="touchUpInside" id="b0w-OT-w5x"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvm-W4-zOa">
+                    <rect key="frame" x="10" y="159" width="177" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Suivi en temps reels"/>
+                    <connections>
+                        <action selector="goToSuivi:" destination="-1" eventType="touchUpInside" id="SDi-m4-FLh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppz-o5-b6M">
+                    <rect key="frame" x="10" y="204" width="279" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Gestion des preuves de livraisons"/>
+                    <connections>
+                        <action selector="goToHisto:" destination="-1" eventType="touchUpInside" id="Zvp-MA-Ccb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0H9-a0-cOC">
+                    <rect key="frame" x="10" y="114" width="187" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Gestion des tournees"/>
+                    <connections>
+                        <action selector="goToTournees:" destination="-1" eventType="touchUpInside" id="rPm-xI-mS8"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="aBG-Ox-pmP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="32H-lb-a5q"/>
+                <constraint firstItem="aBG-Ox-pmP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="4ee-L8-s5R"/>
+                <constraint firstItem="jvm-W4-zOa" firstAttribute="top" secondItem="0H9-a0-cOC" secondAttribute="bottom" constant="10" id="4wn-TR-lpP"/>
+                <constraint firstItem="jvm-W4-zOa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Mld-RK-v3N"/>
+                <constraint firstItem="Ppz-o5-b6M" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="W6C-ei-tci"/>
+                <constraint firstItem="0H9-a0-cOC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="qM8-3t-din"/>
+                <constraint firstItem="Ppz-o5-b6M" firstAttribute="top" secondItem="jvm-W4-zOa" secondAttribute="bottom" constant="10" id="taA-Sn-7wy"/>
+                <constraint firstItem="jvm-W4-zOa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="ugo-CG-AHs"/>
+                <constraint firstItem="0H9-a0-cOC" firstAttribute="top" secondItem="aBG-Ox-pmP" secondAttribute="bottom" constant="10" id="xWk-Bp-dYd"/>
+            </constraints>
+            <point key="canvasLocation" x="26.717557251908396" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
