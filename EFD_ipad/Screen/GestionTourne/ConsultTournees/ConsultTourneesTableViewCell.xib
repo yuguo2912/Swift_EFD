@@ -22,32 +22,23 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5f2-Zn-9Mw">
-                        <rect key="frame" x="10" y="41" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCk-IJ-hw2">
-                        <rect key="frame" x="10" y="72" width="42" height="21"/>
+                        <rect key="frame" x="10" y="41" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZCk-IJ-hw2" firstAttribute="top" secondItem="5f2-Zn-9Mw" secondAttribute="bottom" constant="10" id="Dcb-9x-OJL"/>
                     <constraint firstItem="FhT-gQ-0aq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="FrJ-Gc-a1j"/>
-                    <constraint firstItem="5f2-Zn-9Mw" firstAttribute="top" secondItem="FhT-gQ-0aq" secondAttribute="bottom" constant="10" id="VFE-a6-gBE"/>
+                    <constraint firstItem="ZCk-IJ-hw2" firstAttribute="top" secondItem="FhT-gQ-0aq" secondAttribute="bottom" constant="10" id="Jea-O2-vwT"/>
                     <constraint firstItem="FhT-gQ-0aq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="feh-hb-O7m"/>
                     <constraint firstItem="ZCk-IJ-hw2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="iLF-PE-63G"/>
-                    <constraint firstItem="5f2-Zn-9Mw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="o6c-ff-iz7"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateSpecLabel" destination="ZCk-IJ-hw2" id="oza-Sl-Jk7"/>
-                <outlet property="destinationLabel" destination="5f2-Zn-9Mw" id="MjP-2g-nqU"/>
                 <outlet property="nbColisLabel" destination="FhT-gQ-0aq" id="znt-9E-z4w"/>
             </connections>
             <point key="canvasLocation" x="45.801526717557252" y="46.83098591549296"/>

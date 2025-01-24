@@ -12,7 +12,6 @@
             <connections>
                 <outlet property="DeleteButton" destination="sNg-t5-Uyr" id="nU4-53-tSf"/>
                 <outlet property="dateSpec" destination="0M5-Ax-bpR" id="3hK-Er-JuB"/>
-                <outlet property="destinationLabel" destination="OcS-oY-J9g" id="UMB-ZI-tfd"/>
                 <outlet property="editButton" destination="iQC-OL-aYN" id="sn6-aD-Xn0"/>
                 <outlet property="livreurLabel" destination="5FN-VV-28x" id="Y2e-3l-7vb"/>
                 <outlet property="nbColisLabel" destination="3ul-bq-bi7" id="YIw-SM-0ql"/>
@@ -30,14 +29,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcS-oY-J9g">
-                    <rect key="frame" x="10" y="65" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0M5-Ax-bpR">
-                    <rect key="frame" x="10" y="96" width="42" height="21"/>
+                    <rect key="frame" x="10" y="65" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -59,7 +52,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5FN-VV-28x">
-                    <rect key="frame" x="10" y="127" width="42" height="21"/>
+                    <rect key="frame" x="10" y="96" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -68,18 +61,16 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="0M5-Ax-bpR" firstAttribute="top" secondItem="OcS-oY-J9g" secondAttribute="bottom" constant="10" id="4gQ-Fe-wmX"/>
                 <constraint firstItem="3ul-bq-bi7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="Afu-Tg-qKn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iQC-OL-aYN" secondAttribute="bottom" constant="10" id="DKu-cD-Jho"/>
                 <constraint firstItem="0M5-Ax-bpR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Eon-JW-BIe"/>
                 <constraint firstItem="5FN-VV-28x" firstAttribute="top" secondItem="0M5-Ax-bpR" secondAttribute="bottom" constant="10" id="Nxr-3y-DNE"/>
                 <constraint firstItem="5FN-VV-28x" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="O0X-GB-eMA"/>
-                <constraint firstItem="OcS-oY-J9g" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="UEE-iW-euM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="sNg-t5-Uyr" secondAttribute="bottom" constant="10" id="VTc-Wr-d25"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iQC-OL-aYN" secondAttribute="trailing" constant="10" id="XCb-3d-cgX"/>
                 <constraint firstItem="3ul-bq-bi7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Zox-tD-3FD"/>
                 <constraint firstItem="sNg-t5-Uyr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="pOu-8b-He0"/>
-                <constraint firstItem="OcS-oY-J9g" firstAttribute="top" secondItem="3ul-bq-bi7" secondAttribute="bottom" constant="10" id="wYb-Lw-zRt"/>
+                <constraint firstItem="0M5-Ax-bpR" firstAttribute="top" secondItem="3ul-bq-bi7" secondAttribute="bottom" constant="10" id="qLO-yo-NZH"/>
             </constraints>
             <point key="canvasLocation" x="68.604651162790702" y="0.0"/>
         </view>

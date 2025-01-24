@@ -11,7 +11,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tournee2ViewController" customModule="EFD_ipad" customModuleProvider="target">
             <connections>
                 <outlet property="dataSpecField" destination="bVg-VS-kiy" id="Qjz-Zx-T0i"/>
-                <outlet property="destinationField" destination="14d-ZI-VOT" id="10G-nz-pdY"/>
                 <outlet property="livreurpicker" destination="vK6-Vb-cSm" id="nUg-jo-Ano"/>
                 <outlet property="nbColisField" destination="1Ty-CB-Wak" id="dCt-za-oFm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -30,13 +29,8 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="destination" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="14d-ZI-VOT">
-                            <rect key="frame" x="10" y="54" width="992" height="34"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="dataSpec" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVg-VS-kiy">
-                            <rect key="frame" x="10" y="98" width="992" height="34"/>
+                            <rect key="frame" x="10" y="54" width="992" height="34"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -49,23 +43,21 @@
                             </connections>
                         </button>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vK6-Vb-cSm">
-                            <rect key="frame" x="346" y="142" width="320" height="216"/>
+                            <rect key="frame" x="346" y="98" width="320" height="216"/>
                         </pickerView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBrownColor"/>
                     <constraints>
-                        <constraint firstItem="14d-ZI-VOT" firstAttribute="leading" secondItem="wEz-zT-R8p" secondAttribute="leading" constant="10" id="HXe-8b-Svr"/>
                         <constraint firstAttribute="trailing" secondItem="bVg-VS-kiy" secondAttribute="trailing" constant="10" id="LrH-Hb-7Wp"/>
                         <constraint firstItem="vK6-Vb-cSm" firstAttribute="top" secondItem="bVg-VS-kiy" secondAttribute="bottom" constant="10" id="MlG-9W-2rE"/>
-                        <constraint firstItem="bVg-VS-kiy" firstAttribute="top" secondItem="14d-ZI-VOT" secondAttribute="bottom" constant="10" id="QPn-wp-d5H"/>
                         <constraint firstItem="bVg-VS-kiy" firstAttribute="leading" secondItem="wEz-zT-R8p" secondAttribute="leading" constant="10" id="QpN-Hw-IA4"/>
                         <constraint firstItem="vK6-Vb-cSm" firstAttribute="centerX" secondItem="wEz-zT-R8p" secondAttribute="centerX" id="WyM-rd-Vgb"/>
                         <constraint firstItem="1Ty-CB-Wak" firstAttribute="leading" secondItem="wEz-zT-R8p" secondAttribute="leading" constant="10" id="aTg-8Q-HFv"/>
+                        <constraint firstItem="bVg-VS-kiy" firstAttribute="top" secondItem="1Ty-CB-Wak" secondAttribute="bottom" constant="10" id="bfK-P3-LkB"/>
                         <constraint firstAttribute="bottom" secondItem="G9t-f8-tEY" secondAttribute="bottom" constant="10" id="cs0-N3-n4P"/>
                         <constraint firstItem="1Ty-CB-Wak" firstAttribute="top" secondItem="wEz-zT-R8p" secondAttribute="top" constant="10" id="ewT-Ag-u5j"/>
-                        <constraint firstAttribute="trailing" secondItem="14d-ZI-VOT" secondAttribute="trailing" constant="10" id="pWh-S0-4Ls"/>
+                        <constraint firstItem="bVg-VS-kiy" firstAttribute="leading" secondItem="wEz-zT-R8p" secondAttribute="leading" constant="10" id="gpK-XZ-plx"/>
                         <constraint firstItem="G9t-f8-tEY" firstAttribute="leading" secondItem="wEz-zT-R8p" secondAttribute="leading" constant="10" id="qwf-9c-rev"/>
-                        <constraint firstItem="14d-ZI-VOT" firstAttribute="top" secondItem="1Ty-CB-Wak" secondAttribute="bottom" constant="10" id="rSR-wp-fv7"/>
                         <constraint firstAttribute="trailing" secondItem="1Ty-CB-Wak" secondAttribute="trailing" constant="10" id="zuM-Xx-97b"/>
                     </constraints>
                 </view>
@@ -86,7 +78,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

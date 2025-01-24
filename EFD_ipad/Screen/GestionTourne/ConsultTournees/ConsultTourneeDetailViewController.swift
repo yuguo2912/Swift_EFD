@@ -11,7 +11,6 @@ import CoreLocation
 class ConsultTourneeDetailViewController: UIViewController {
     
     @IBOutlet weak var nbColisLabel: UILabel!
-    @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var dateSpec: UILabel!
     @IBOutlet weak var DeleteButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
@@ -27,7 +26,6 @@ class ConsultTourneeDetailViewController: UIViewController {
         // Mettre à jour les labels avec les données de la tournée
         if let tournee = self.tournee {
             self.nbColisLabel.text = "\(tournee.nbColis)"
-            self.destinationLabel.text = formatCoordinates(tournee.destination)
             self.dateSpec.text = formatDateComponents(tournee.dateSpec)
             
             // Vérification si le livreur existe
@@ -47,10 +45,6 @@ class ConsultTourneeDetailViewController: UIViewController {
                 textField.keyboardType = .numberPad
             }
             alert.addTextField { textField in
-                textField.text = "\(self.tournee?.destination.latitude ?? 0.0), \(self.tournee?.destination.longitude ?? 0.0)"
-                textField.placeholder = "Destination (lat, long)"
-            }
-            alert.addTextField { textField in
                 textField.text = self.formatDateComponents(self.tournee?.dateSpec)
                 textField.placeholder = "Date (yyyy-MM-dd HH:mm)"
             }
@@ -62,17 +56,8 @@ class ConsultTourneeDetailViewController: UIViewController {
                 // Récupérer les nouvelles valeurs
                 let newNbColis = Int(alert.textFields?[0].text ?? "") ?? self.tournee?.nbColis ?? 0
                 
-                let destinationText = alert.textFields?[1].text ?? ""
-                let coordinates = self.parseCoordinates(from: destinationText)
-                
                 let newDateText = alert.textFields?[2].text ?? ""
                 let newDateComponents = self.parseDateComponents(from: newDateText)
-                
-                // Vérifier que les coordonnées sont valides
-                guard let newDestination = coordinates else {
-                    self.showError(message: "Les coordonnées sont invalides.")
-                    return
-                }
                 
                 // Vérifier que la date est valide
                 guard newDateComponents != nil else {
@@ -82,12 +67,10 @@ class ConsultTourneeDetailViewController: UIViewController {
                 
                 // Mettre à jour l'objet tournée
                 self.tournee?.nbColis = newNbColis
-                self.tournee?.destination = newDestination
                 self.tournee?.dateSpec = newDateComponents!
                 
                 // Mettre à jour les labels
                 self.nbColisLabel.text = "\(newNbColis)"
-                self.destinationLabel.text = self.formatCoordinates(newDestination)
                 self.dateSpec.text = self.formatDateComponents(newDateComponents!)
             }))
             
@@ -122,9 +105,9 @@ class ConsultTourneeDetailViewController: UIViewController {
         
         // MARK: - Helpers
         
-        func formatCoordinates(_ coordinates: CLLocationCoordinate2D) -> String {
+        /*func formatCoordinates(_ coordinates: CLLocationCoordinate2D) -> String {
             return String(format: "Lat: %.6f, Long: %.6f", coordinates.latitude, coordinates.longitude)
-        }
+        }*/
         
         func formatDateComponents(_ components: DateComponents?) -> String {
             guard let components = components,
@@ -134,7 +117,7 @@ class ConsultTourneeDetailViewController: UIViewController {
             return formatter.string(from: date)
         }
         
-        func parseCoordinates(from text: String) -> CLLocationCoordinate2D? {
+        /*func parseCoordinates(from text: String) -> CLLocationCoordinate2D? {
             let components = text.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
             guard components.count == 2,
                   let latitude = Double(components[0]),
@@ -142,7 +125,7 @@ class ConsultTourneeDetailViewController: UIViewController {
                 return nil
             }
             return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        }
+        }*/
         
         func parseDateComponents(from text: String) -> DateComponents? {
             let formatter = DateFormatter()

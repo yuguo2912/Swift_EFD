@@ -10,7 +10,6 @@ import CoreLocation
 
 class Tournee2ViewController: UIViewController {
     @IBOutlet weak var nbColisField: UITextField!
-    @IBOutlet weak var destinationField: UITextField!
     @IBOutlet weak var dataSpecField: UITextField!
     
     @IBOutlet weak var livreurpicker: UIPickerView!
@@ -40,8 +39,6 @@ class Tournee2ViewController: UIViewController {
         // Valider les champs
         guard let nbColisText = nbColisField.text,
               let nbColis = Int(nbColisText),
-              let destinationText = destinationField.text,
-              let destination = parseCoordinates(from: destinationText),
               let dateSpecText = dataSpecField.text,
               let dateSpec = parseDateComponents(from: dateSpecText),
               let livreur = selectedLivreur else { // Vérifier qu'un livreur est sélectionné
@@ -51,7 +48,7 @@ class Tournee2ViewController: UIViewController {
         }
         
         // Créer une nouvelle tournée avec le livreur sélectionné
-        let newTournee = Tournees(nbColis: nbColis, destination: destination, dateSpec: dateSpec, livreur: livreur)
+        let newTournee = Tournees(nbColis: nbColis, dateSpec: dateSpec, livreur: livreur)
         
         // Ajouter la tournée dans le service
         MockConnexionService.getInstance().addTournee(newTournee)
@@ -75,7 +72,7 @@ class Tournee2ViewController: UIViewController {
     
     // MARK: - Helpers
     
-    func parseCoordinates(from text: String) -> CLLocationCoordinate2D? {
+    /*func parseCoordinates(from text: String) -> CLLocationCoordinate2D? {
         let components = text.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
         guard components.count == 2,
               let latitude = Double(components[0]),
@@ -83,7 +80,7 @@ class Tournee2ViewController: UIViewController {
             return nil
         }
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
+    }*/
     
     func parseDateComponents(from text: String) -> DateComponents? {
         let formatter = DateFormatter()
