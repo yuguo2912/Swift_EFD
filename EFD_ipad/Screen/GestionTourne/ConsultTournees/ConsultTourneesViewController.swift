@@ -60,8 +60,14 @@ extension ConsultTourneesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "consult", for: indexPath) as! ConsultTourneesTableViewCell
         
         let tournee = tournees[indexPath.row]
-        cell.redrawtournee(tournee: tournee)
+        cell.redrawtournee(tournee: tournee, isEditable: false)
         
+        cell.onToggleDelivered = {[weak self] in guard let self = self else {return}
+            self.tournees[indexPath.row].isDelivered.toggle()
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            
+            
+        }
         return cell
     }
 }

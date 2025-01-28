@@ -7,34 +7,35 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-
+class MainViewController: UIViewController, BlankViewControllerDelegate {
+    
+    weak var blankViewController: BlankViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .systemGray
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func goToGestionLivreurs(_ sender: Any) {
-        let gestionlivreurs = GestionLivreurViewController()
-        self.navigationController?.pushViewController(gestionlivreurs, animated: true)
-    }
-
     
     @IBAction func goToSuivi(_ sender: Any) {
-        let suivi = SuiviViewController()
-        self.navigationController?.pushViewController(suivi, animated: true)
-    }
-    @IBAction func goToTournees(_ sender: Any) {
-        let tournees = GestionTourneViewController()
-        self.navigationController?.pushViewController(tournees, animated: true)
+        blankViewController?.handleAction(.goToSuivi)
     }
     
-    
-    
-    
-    
-    @IBAction func goToHisto(_ sender: Any) {
-        
+    @IBAction func goToConsultLivreur(_ sender: Any) {
+        blankViewController?.handleAction(.goToConsultLivreur)
+    }
+    @IBAction func createLivreur(_ sender: Any) {
+        blankViewController?.handleAction(.createLivreur)
+    }
+    @IBAction func goToConsultTournees(_ sender: Any) {
+        blankViewController?.handleAction(.goToConsultTournees)
+    }
+    @IBAction func createTournees(_ sender: Any) {
+        blankViewController?.handleAction(.createTournees)
+    }
+    func didSelectAction(_ action: BlankViewController.Action) {
+        // Appelle la méthode handleAction du BlankViewController
+        blankViewController?.handleAction(action)
     }
 }

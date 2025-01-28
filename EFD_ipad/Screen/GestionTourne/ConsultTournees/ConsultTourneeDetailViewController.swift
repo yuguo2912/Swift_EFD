@@ -15,7 +15,7 @@ class ConsultTourneeDetailViewController: UIViewController {
     @IBOutlet weak var DeleteButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var livreurLabel: UILabel!
-    
+    @IBOutlet weak var deliveredSwitch: UISwitch!
     var tournee:  Tournees? // Variable pour recevoir le livreur sélectionné
     var tournees: [Tournees]?
     var onTourneeDate: ((Tournees) -> Void)?
@@ -27,13 +27,17 @@ class ConsultTourneeDetailViewController: UIViewController {
         if let tournee = self.tournee {
             self.nbColisLabel.text = "\(tournee.nbColis)"
             self.dateSpec.text = formatDateComponents(tournee.dateSpec)
+            deliveredSwitch.isOn = tournee.isDelivered
             
             // Vérification si le livreur existe
             let livreur = tournee.livreur
             self.livreurLabel.text = "\(livreur.nom)\(livreur.prenom), \(livreur.age) ans"
         }
     }
-        
+    @IBAction func deliveredSwitchToggle(_ sender: UISwitch) {
+        self.tournee?.isDelivered = sender.isOn
+    }
+    
         @IBAction func modifyButtonTapped(_ sender: Any) {
             // Afficher une alerte pour permettre à l'utilisateur de modifier les informations de la tournée
             let alert = UIAlertController(title: "Modifier Tournée", message: nil, preferredStyle: .alert)

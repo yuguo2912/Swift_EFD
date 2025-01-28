@@ -28,9 +28,17 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMj-7u-TiT">
+                        <rect key="frame" x="0.0" y="72" width="51" height="31"/>
+                        <connections>
+                            <action selector="deliveredSwitchToggle:" destination="KGk-i7-Jjw" eventType="valueChanged" id="Qww-Na-6Ig"/>
+                        </connections>
+                    </switch>
                 </subviews>
                 <constraints>
                     <constraint firstItem="FhT-gQ-0aq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="FrJ-Gc-a1j"/>
+                    <constraint firstItem="rMj-7u-TiT" firstAttribute="top" secondItem="ZCk-IJ-hw2" secondAttribute="bottom" constant="10" id="HLB-cR-a3P"/>
+                    <constraint firstItem="rMj-7u-TiT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Hyc-fd-1sa"/>
                     <constraint firstItem="ZCk-IJ-hw2" firstAttribute="top" secondItem="FhT-gQ-0aq" secondAttribute="bottom" constant="10" id="Jea-O2-vwT"/>
                     <constraint firstItem="FhT-gQ-0aq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="feh-hb-O7m"/>
                     <constraint firstItem="ZCk-IJ-hw2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="iLF-PE-63G"/>
@@ -39,6 +47,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateSpecLabel" destination="ZCk-IJ-hw2" id="oza-Sl-Jk7"/>
+                <outlet property="deliveredswitch" destination="rMj-7u-TiT" id="Acu-o8-jEh"/>
                 <outlet property="nbColisLabel" destination="FhT-gQ-0aq" id="znt-9E-z4w"/>
             </connections>
             <point key="canvasLocation" x="45.801526717557252" y="46.83098591549296"/>

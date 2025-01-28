@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="iPad13_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,11 +17,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <rect key="frame" x="0.0" y="0.0" width="1032" height="1376"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="identifiant" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dOW-4f-qvv">
-                    <rect key="frame" x="10" y="69" width="373" height="34"/>
+                    <rect key="frame" x="10" y="34" width="1012" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="q1l-U3-rkz"/>
                     </constraints>
@@ -29,7 +29,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="mdp" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kmp-3N-9gm">
-                    <rect key="frame" x="10" y="113" width="373" height="34"/>
+                    <rect key="frame" x="10" y="78" width="1012" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="CT4-YD-Acw"/>
                     </constraints>
@@ -37,13 +37,16 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mq7-XH-bgS">
-                    <rect key="frame" x="10" y="157" width="105" height="35"/>
+                    <rect key="frame" x="10" y="122" width="105" height="35"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Connexion"/>
                     <connections>
                         <action selector="goToMain:" destination="-1" eventType="touchUpInside" id="hLC-Rx-P2k"/>
                     </connections>
                 </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="voiture-livraison-rouge-livrer-express-livraison-livraison-rapide-fond-illustration-rendu-3d_56104-1910" translatesAutoresizingMaskIntoConstraints="NO" id="iTr-tk-G1j">
+                    <rect key="frame" x="0.0" y="112" width="1032" height="1244"/>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -51,16 +54,21 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dOW-4f-qvv" secondAttribute="trailing" constant="10" id="0d5-93-aSx"/>
                 <constraint firstItem="Mq7-XH-bgS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="7eP-yn-Y91"/>
                 <constraint firstItem="Mq7-XH-bgS" firstAttribute="top" secondItem="kmp-3N-9gm" secondAttribute="bottom" constant="10" id="F3g-53-VY0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iTr-tk-G1j" secondAttribute="trailing" id="HKc-dE-jdW"/>
+                <constraint firstItem="iTr-tk-G1j" firstAttribute="top" secondItem="kmp-3N-9gm" secondAttribute="bottom" id="OLH-Dy-yc4"/>
                 <constraint firstItem="kmp-3N-9gm" firstAttribute="top" secondItem="dOW-4f-qvv" secondAttribute="bottom" constant="10" id="STI-71-jjY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iTr-tk-G1j" secondAttribute="bottom" id="a93-4u-NhP"/>
                 <constraint firstItem="dOW-4f-qvv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="bgc-S2-34U"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kmp-3N-9gm" secondAttribute="trailing" constant="10" id="g83-2o-LXN"/>
                 <constraint firstItem="kmp-3N-9gm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="l3E-c0-69t"/>
+                <constraint firstItem="iTr-tk-G1j" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pBY-MJ-rrj"/>
                 <constraint firstItem="dOW-4f-qvv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="rop-VC-A7D"/>
             </constraints>
             <point key="canvasLocation" x="8" y="-2"/>
         </view>
     </objects>
     <resources>
+        <image name="voiture-livraison-rouge-livrer-express-livraison-livraison-rapide-fond-illustration-rendu-3d_56104-1910" width="626" height="417"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

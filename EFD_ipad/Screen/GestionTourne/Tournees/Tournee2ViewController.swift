@@ -11,6 +11,7 @@ import CoreLocation
 class Tournee2ViewController: UIViewController {
     @IBOutlet weak var nbColisField: UITextField!
     @IBOutlet weak var dataSpecField: UITextField!
+    @IBOutlet weak var isDeliveredSwitch: UISwitch!
     
     @IBOutlet weak var livreurpicker: UIPickerView!
     
@@ -48,7 +49,7 @@ class Tournee2ViewController: UIViewController {
         }
         
         // Créer une nouvelle tournée avec le livreur sélectionné
-        let newTournee = Tournees(nbColis: nbColis, dateSpec: dateSpec, livreur: livreur)
+        let newTournee = Tournees(nbColis: nbColis, dateSpec: dateSpec, livreur: livreur, isDelivered: isDeliveredSwitch.isOn)
         
         // Ajouter la tournée dans le service
         MockConnexionService.getInstance().addTournee(newTournee)

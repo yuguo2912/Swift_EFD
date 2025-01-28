@@ -1,26 +1,33 @@
-//
-//  AppDelegate.swift
-//  GasStation
-//
-//  Created by Benoit Briatte on 17/12/2024.
-//
-
 import UIKit
 
-
-@main 
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
 
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UINavigationController(rootViewController: HomeViewController())
-        window.makeKeyAndVisible()
-        self.window = window
+        // Créer les contrôleurs
+        let mainViewController = MainViewController(nibName: "MainViewController", bundle: nil)
+        let blankViewController = BlankViewController(nibName: nil, bundle: nil)
+
+        // Connecter le delegate
+        mainViewController.blankViewController = blankViewController
+
+        // Navigation pour le Master et le Detail
+        let masterNavigationController = UINavigationController(rootViewController: mainViewController)
+        let detailNavigationController = UINavigationController(rootViewController: blankViewController)
+
+        // Configurer le SplitViewController
+        let splitViewController = UISplitViewController()
+        splitViewController.viewControllers = [masterNavigationController, detailNavigationController]
+        splitViewController.preferredDisplayMode = .oneBesideSecondary
+
+        // Assigner au rootViewController
+        window?.rootViewController = splitViewController
+        window?.makeKeyAndVisible()
 
         return true
     }
 }
-

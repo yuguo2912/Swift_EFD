@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="DeleteButton" destination="sNg-t5-Uyr" id="nU4-53-tSf"/>
                 <outlet property="dateSpec" destination="0M5-Ax-bpR" id="3hK-Er-JuB"/>
+                <outlet property="deliveredSwitch" destination="Zzk-Eh-Tck" id="C3j-RO-Lpd"/>
                 <outlet property="editButton" destination="iQC-OL-aYN" id="sn6-aD-Xn0"/>
                 <outlet property="livreurLabel" destination="5FN-VV-28x" id="Y2e-3l-7vb"/>
                 <outlet property="nbColisLabel" destination="3ul-bq-bi7" id="YIw-SM-0ql"/>
@@ -57,6 +58,12 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zzk-Eh-Tck">
+                    <rect key="frame" x="10" y="127" width="51" height="31"/>
+                    <connections>
+                        <action selector="deliveredSwitchToggle:" destination="-1" eventType="valueChanged" id="Qud-dV-8uW"/>
+                    </connections>
+                </switch>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -64,11 +71,13 @@
                 <constraint firstItem="3ul-bq-bi7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="Afu-Tg-qKn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iQC-OL-aYN" secondAttribute="bottom" constant="10" id="DKu-cD-Jho"/>
                 <constraint firstItem="0M5-Ax-bpR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Eon-JW-BIe"/>
+                <constraint firstItem="Zzk-Eh-Tck" firstAttribute="top" secondItem="5FN-VV-28x" secondAttribute="bottom" constant="10" id="HQC-mi-vYt"/>
                 <constraint firstItem="5FN-VV-28x" firstAttribute="top" secondItem="0M5-Ax-bpR" secondAttribute="bottom" constant="10" id="Nxr-3y-DNE"/>
                 <constraint firstItem="5FN-VV-28x" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="O0X-GB-eMA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="sNg-t5-Uyr" secondAttribute="bottom" constant="10" id="VTc-Wr-d25"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iQC-OL-aYN" secondAttribute="trailing" constant="10" id="XCb-3d-cgX"/>
                 <constraint firstItem="3ul-bq-bi7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Zox-tD-3FD"/>
+                <constraint firstItem="Zzk-Eh-Tck" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="dA7-dA-oLA"/>
                 <constraint firstItem="sNg-t5-Uyr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="pOu-8b-He0"/>
                 <constraint firstItem="0M5-Ax-bpR" firstAttribute="top" secondItem="3ul-bq-bi7" secondAttribute="bottom" constant="10" id="qLO-yo-NZH"/>
             </constraints>

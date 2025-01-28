@@ -17,8 +17,8 @@ class MockConnexionService: EFDService {
         Livreur(nom: "Matthieu", prenom: "D", age: 48, location: CLLocationCoordinate2D(latitude: 21.2212132, longitude: 2.23232312))
     ]
     private var tourneeList = [
-        Tournees(nbColis: 20, dateSpec: DateComponents(year: 2024, month: 12, day: 26, hour: 14, minute: 30), livreur: (Livreur(nom: "Hugo", prenom: "Arnau", age: 22))),
-        Tournees(nbColis: 20, dateSpec: DateComponents(year: 2022, month: 10, day: 1, hour: 00, minute: 10), livreur: Livreur(nom: "oui", prenom: "test2", age: 23)),
+        Tournees(nbColis: 20, dateSpec: DateComponents(year: 2024, month: 12, day: 26, hour: 14, minute: 30), livreur: (Livreur(nom: "Hugo", prenom: "Arnau", age: 22)),isDelivered: false),
+        Tournees(nbColis: 20, dateSpec: DateComponents(year: 2022, month: 10, day: 1, hour: 00, minute: 10), livreur: Livreur(nom: "oui", prenom: "test2", age: 23),isDelivered: true),
     ]
     class func getInstance() -> MockConnexionService {
         if self.instance == nil {
