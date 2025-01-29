@@ -44,7 +44,7 @@
                         <action selector="goToMain:" destination="-1" eventType="touchUpInside" id="hLC-Rx-P2k"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="voiture-livraison-rouge-livrer-express-livraison-livraison-rapide-fond-illustration-rendu-3d_56104-1910" translatesAutoresizingMaskIntoConstraints="NO" id="iTr-tk-G1j">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="voiture-livraison-rouge-livrer-express-livraison-livraison-rapide-fond-illustration-rendu-3d_56104-1910" translatesAutoresizingMaskIntoConstraints="NO" id="dNs-CZ-MMp">
                     <rect key="frame" x="0.0" y="112" width="1032" height="1244"/>
                 </imageView>
             </subviews>
@@ -54,21 +54,21 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dOW-4f-qvv" secondAttribute="trailing" constant="10" id="0d5-93-aSx"/>
                 <constraint firstItem="Mq7-XH-bgS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="7eP-yn-Y91"/>
                 <constraint firstItem="Mq7-XH-bgS" firstAttribute="top" secondItem="kmp-3N-9gm" secondAttribute="bottom" constant="10" id="F3g-53-VY0"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iTr-tk-G1j" secondAttribute="trailing" id="HKc-dE-jdW"/>
-                <constraint firstItem="iTr-tk-G1j" firstAttribute="top" secondItem="kmp-3N-9gm" secondAttribute="bottom" id="OLH-Dy-yc4"/>
                 <constraint firstItem="kmp-3N-9gm" firstAttribute="top" secondItem="dOW-4f-qvv" secondAttribute="bottom" constant="10" id="STI-71-jjY"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iTr-tk-G1j" secondAttribute="bottom" id="a93-4u-NhP"/>
+                <constraint firstItem="dNs-CZ-MMp" firstAttribute="top" secondItem="kmp-3N-9gm" secondAttribute="bottom" id="UcT-WL-Z8f"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dNs-CZ-MMp" secondAttribute="trailing" id="XRm-9i-VHk"/>
                 <constraint firstItem="dOW-4f-qvv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="bgc-S2-34U"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kmp-3N-9gm" secondAttribute="trailing" constant="10" id="g83-2o-LXN"/>
                 <constraint firstItem="kmp-3N-9gm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="l3E-c0-69t"/>
-                <constraint firstItem="iTr-tk-G1j" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pBY-MJ-rrj"/>
                 <constraint firstItem="dOW-4f-qvv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="rop-VC-A7D"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dNs-CZ-MMp" secondAttribute="bottom" id="vvv-Jn-Wla"/>
+                <constraint firstItem="dNs-CZ-MMp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xwm-f4-mt9"/>
             </constraints>
             <point key="canvasLocation" x="8" y="-2"/>
         </view>
     </objects>
     <resources>
-        <image name="voiture-livraison-rouge-livrer-express-livraison-livraison-rapide-fond-illustration-rendu-3d_56104-1910" width="626" height="417"/>
+        <image name="voiture-livraison-rouge-livrer-express-livraison-livraison-rapide-fond-illustration-rendu-3d_56104-1910" width="1024" height="1024"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

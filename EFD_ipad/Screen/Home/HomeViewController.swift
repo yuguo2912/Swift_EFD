@@ -11,7 +11,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var identifiantTextField: UITextField!
     @IBOutlet weak var mdpTextField: UITextField!
-    
+    var onLoginSuccess: (()->Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         mdpTextField.isSecureTextEntry = true
@@ -24,8 +24,7 @@ class HomeViewController: UIViewController {
             guard let self = self else { return }
             if isValid {
                 // Naviguer vers la vue principale
-                let mainVC = MainViewController()
-                self.navigationController?.pushViewController(mainVC, animated: true)
+                self.onLoginSuccess?()
             } else {
                 // Afficher une alerte pour mot de passe incorrect
                 let alert = UIAlertController(title: "Alerte", message: "Mauvais identifiant ou mot de passe", preferredStyle: .alert)
@@ -37,19 +36,23 @@ class HomeViewController: UIViewController {
     // Vérification des identifiants
     func verificationAdmin(completion: @escaping (Bool) -> Void) {
         // Récupérer les identifiants saisis
-        guard let username = identifiantTextField.text,
+        guard let mail = identifiantTextField.text,
               let password = mdpTextField.text else {
             completion(false)
             return
         }
         
         // Appeler le mock service
-        MockConnexionService.getInstance().getAllConnexion { connexions in
-            // Vérifier si les identifiants correspondent à une entrée du mock
-            let isValid = connexions.contains { connexion in
-                connexion.username == username && connexion.password == password
-            }
-            completion(isValid)
+        /*MockConnexionService.getInstance().getAllConnexion { connexions in
+         // Vérifier si les identifiants correspondent à une entrée du mock
+         let isValid = connexions.contains { connexion in
+         connexion.username == username && connexion.password == password
+         }
+         completion(isValid)
+         }*/
+        HttpConnexionService.getInstance().login(mail: mail, password: password) { success in
+                   completion(success)
+    
         }
     }
 }

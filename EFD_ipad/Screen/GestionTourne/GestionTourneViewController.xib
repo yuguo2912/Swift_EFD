@@ -31,7 +31,7 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="voiture-livraison-rouge-livrer-express-livraison-livraison-rapide-fond-illustration-rendu-3d_56104-1910" translatesAutoresizingMaskIntoConstraints="NO" id="ysl-Xo-I92">
-                    <rect key="frame" x="0.0" y="939" width="1032" height="417"/>
+                    <rect key="frame" x="0.0" y="332" width="1032" height="1024"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sélection des Tournees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rvp-vO-fBA">
                     <rect key="frame" x="427" y="24" width="178" height="21"/>
@@ -65,7 +65,7 @@
         </view>
     </objects>
     <resources>
-        <image name="voiture-livraison-rouge-livrer-express-livraison-livraison-rapide-fond-illustration-rendu-3d_56104-1910" width="626" height="417"/>
+        <image name="voiture-livraison-rouge-livrer-express-livraison-livraison-rapide-fond-illustration-rendu-3d_56104-1910" width="1024" height="1024"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

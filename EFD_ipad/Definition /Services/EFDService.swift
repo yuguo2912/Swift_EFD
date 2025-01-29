@@ -9,5 +9,3 @@ protocol EFDService{
         @escaping([Connexion])->Void)->Void
     func getAllLivreur(completion: @escaping([Livreur])->Void)->Void
 }
-
-// interface pour les services mock et web

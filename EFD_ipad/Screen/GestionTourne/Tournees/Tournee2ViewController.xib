@@ -73,6 +73,7 @@
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wEz-zT-R8p" secondAttribute="bottom" constant="800" id="CH0-q0-XOK"/>
                 <constraint firstItem="wEz-zT-R8p" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="Hsa-5l-jge"/>
+                <constraint firstItem="wEz-zT-R8p" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="YAX-EX-Qt9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wEz-zT-R8p" secondAttribute="trailing" constant="10" id="ZVu-Nb-hpF"/>
                 <constraint firstItem="wEz-zT-R8p" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="aI8-Ia-ixr"/>
             </constraints>
