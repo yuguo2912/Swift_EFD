@@ -75,5 +75,4 @@ class UserService: UserProtocol {
     func setUserLocationById(id: Int, coordinates: Coordinates, completion: @escaping (Result<Bool, any Error>) -> Void) {
         return
     }
-    
 }

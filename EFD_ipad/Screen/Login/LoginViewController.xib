@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -40,8 +41,12 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" textContentType="password"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ESGI Fast Delivery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rno-R7-PX6">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ESGI Fast Delivery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rno-R7-PX6">
                     <rect key="frame" x="500" y="138" width="450" height="51.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="450" id="Sqg-PS-esf"/>
+                        <constraint firstAttribute="height" constant="51.5" id="eyt-mK-kTk"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="italicSystem" pointSize="43"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -60,7 +65,6 @@
                 <constraint firstItem="t23-42-RSn" firstAttribute="top" secondItem="Rno-R7-PX6" secondAttribute="bottom" constant="55" id="3ji-cB-Mx0"/>
                 <constraint firstItem="rds-CB-htU" firstAttribute="top" secondItem="t23-42-RSn" secondAttribute="bottom" constant="58" id="GRw-i1-vG2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="t23-42-RSn" secondAttribute="trailing" constant="450" id="Kqo-vr-Wkq"/>
-                <constraint firstItem="Rno-R7-PX6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="500" id="OWP-6m-GJZ"/>
                 <constraint firstItem="1xE-ad-Yk1" firstAttribute="top" secondItem="rds-CB-htU" secondAttribute="bottom" constant="39" id="TGs-cB-LUD"/>
                 <constraint firstItem="rds-CB-htU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="450" id="dDX-bx-MOV"/>
                 <constraint firstItem="1xE-ad-Yk1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="450" id="glp-fG-k6Q"/>
