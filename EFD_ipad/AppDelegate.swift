@@ -7,8 +7,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let splitViewController = UISplitViewController(style: .doubleColumn)
     
-    let vcList: [UIViewController] = [ProfileViewController(), ManageDeliveryMansViewController(),ManageToursViewController()]
-    let vcNameList: [String] = ["Profile", "Gestion des livreurs", "Gestion des tournées"]
+    let vcList: [UIViewController] = [ProfileViewController(), ManageDeliveryMansViewController(),ManageToursViewController(),MapViewController()]
+    let vcNameList: [String] = ["Profile", "Gestion des livreurs", "Gestion des tournées","Suivre un livreur"]
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let window = UIWindow(frame: UIScreen.main.bounds)

@@ -8,8 +8,8 @@
 import UIKit
 
 class MenuController: UITableViewController {
-    let vcList: [UIViewController] = [ProfileViewController(), ManageDeliveryMansViewController(),ManageToursViewController()]
-    let vcNameList: [String] = ["Profile", "Gestion des livreurs", "Gestion des tournées"]
+    let vcList: [UIViewController] = [ProfileViewController(), ManageDeliveryMansViewController(),ManageToursViewController(),MapViewController()]
+    let vcNameList: [String] = ["Profile", "Gestion des livreurs", "Gestion des tournées","Suivre un livreur"]
     
     weak var delegate: MenuProtocol?
     
