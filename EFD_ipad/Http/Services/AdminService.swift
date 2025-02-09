@@ -15,6 +15,8 @@ class AdminService: AdminProtocol {
     
     private var deliveryMans: [User] = []
     
+    var admin: User?
+    
     class func getInstance() -> AdminService {
         if instance == nil {
             instance = AdminService()

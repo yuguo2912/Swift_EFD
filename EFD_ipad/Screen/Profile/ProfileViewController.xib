@@ -81,9 +81,12 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Modifier les informations"/>
+                    <connections>
+                        <action selector="handleUpdateUser:" destination="-1" eventType="touchUpInside" id="AKw-or-sy2"/>
+                    </connections>
                 </button>
                 <pickerView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="t0Y-KL-iek">
-                    <rect key="frame" x="398.5" y="330" width="245" height="41"/>
+                    <rect key="frame" x="399" y="330" width="245" height="41"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="245" id="9V4-Oc-Q1r"/>
                         <constraint firstAttribute="height" constant="41" id="lxP-lz-l4b"/>

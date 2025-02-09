@@ -50,4 +50,14 @@ class User: Decodable, CustomStringConvertible {
         self.coordinates = Coordinates(from: dictionary["coordinates"] as? [String: Any])
     }
     
+    func toDictionary() -> [String: Any] {
+            return [
+                "id": self.id,
+                "name": self.name,
+                "lastname": self.lastname,
+                "email": self.email,
+                "role": self.role.rawValue
+            ]
+        }
+    
 }
