@@ -39,6 +39,9 @@
                         <rect key="frame" x="331" y="5" width="154" height="35"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="filled" title="Accéder au profil"/>
+                        <connections>
+                            <action selector="handleCheckoutDeliveryManProfile:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HGv-KM-ryK"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

@@ -58,6 +58,13 @@ extension ManageDeliveryMansViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeliveryManCell", for: indexPath) as! ManageDeliveryManTableViewCell
         cell.redraw(user: self.deliveryMans![indexPath.row])
+        
+        cell.onProfileButtonTapped = { [weak self] in
+            let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            profileVC.userId = self?.deliveryMans![indexPath.row].id
+            self?.navigationController?.pushViewController(profileVC, animated: true)
+        }
+        
         return cell
     }
 }

@@ -25,6 +25,7 @@ class ProfileViewController: UIViewController {
     private let userService = UserService()
     
     var user: User?
+    var userId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,10 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        userService.getUserById(id: TokenManager.getInstance().getTokenClaims()!.id) { result in
+        
+        let idToFetch = userId ?? TokenManager.getInstance().getTokenClaims()!.id
+            
+        userService.getUserById(id: idToFetch) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let user):
@@ -45,8 +49,19 @@ class ProfileViewController: UIViewController {
                     if let index = Role.allCases.firstIndex(of: user.role) {
                         self.rolePicker.selectRow(index, inComponent: 0, animated: false)
                     }
-                    self.rolePicker.isUserInteractionEnabled = (user.role != .ADMIN)
-                    self.rolePicker.alpha = (user.role == .ADMIN) ? 0.5 : 1.0
+                    
+                    let isCurrentUserAdmin = (TokenManager.getInstance().getTokenClaims()?.role == Role.ADMIN.rawValue)
+                    self.rolePicker.isUserInteractionEnabled = isCurrentUserAdmin
+                    
+                    
+                    let isCurrentUser = (TokenManager.getInstance().getTokenClaims()!.id == user.id) || isCurrentUserAdmin
+
+                    self.firstNameTF.isUserInteractionEnabled = isCurrentUser
+                    self.lastNameTF.isUserInteractionEnabled = isCurrentUser
+                    self.mailTF.isUserInteractionEnabled = isCurrentUser
+                    self.modifyProfileInfoBT.isHidden = !isCurrentUser
+                    self.deleteAccountBT.isHidden = !isCurrentUser
+
                 case .failure(let error):
                     let alert = UIAlertController(title: "Erreur", message: error.localizedDescription, preferredStyle: .alert)
                     let retryAction = UIAlertAction(title: "Réessayer", style: .default) { _ in
@@ -63,9 +78,9 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func handleUpdateUser(_ sender: Any) {
-        self.user?.name = firstNameTF.text ?? ""
-        self.user?.lastname = lastNameTF.text ?? ""
-        self.user?.email = mailTF.text ?? ""
+        self.user?.name = firstNameTF.text!
+        self.user?.lastname = lastNameTF.text!
+        self.user?.email = mailTF.text!
         if user!.role != .ADMIN {
             let selectedRow = rolePicker.selectedRow(inComponent: 0)
             user!.role = Role.allCases[selectedRow]
