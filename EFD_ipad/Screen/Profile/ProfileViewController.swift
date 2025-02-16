@@ -81,10 +81,30 @@ class ProfileViewController: UIViewController {
         self.user?.name = firstNameTF.text!
         self.user?.lastname = lastNameTF.text!
         self.user?.email = mailTF.text!
-        if user!.role != .ADMIN {
-            let selectedRow = rolePicker.selectedRow(inComponent: 0)
-            user!.role = Role.allCases[selectedRow]
-        }
+        let selectedRow = rolePicker.selectedRow(inComponent: 0)
+        
+        if Role.allCases[selectedRow] == Role.USER || Role.allCases[selectedRow] == Role.ADMIN {
+                let alert = UIAlertController(title: "Attention", message: "Une fois changé en USER ou en ADMIN, vous ne pourrez plus modifier l'utilisateur. Êtes-vous sûr ?", preferredStyle: .alert)
+                
+                let validateAction = UIAlertAction(title: "Valider", style: .default) { _ in
+                    let selectedRow = self.rolePicker.selectedRow(inComponent: 0)
+                    self.user?.role = Role.allCases[selectedRow]
+                    self.handleUpdateUserProfile()
+                }
+                let cancelAction = UIAlertAction(title: "Annuler", style: .cancel, handler: nil)
+                
+                alert.addAction(validateAction)
+                alert.addAction(cancelAction)
+                
+                present(alert, animated: true)
+            } else {
+                let selectedRow = rolePicker.selectedRow(inComponent: 0)
+                user?.role = Role.allCases[selectedRow]
+                self.handleUpdateUserProfile()
+            }
+    }
+    
+    private func handleUpdateUserProfile() {
         userService.editUserById(id: self.user!.id, user: self.user!) {result in
             DispatchQueue.main.async {
                 switch result {

@@ -11,8 +11,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let vcNameList: [String] = ["Profile", "Gestion des livreurs", "Gestion des tournées","Suivre un livreur"]
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        switch UIDevice.current.userInterfaceIdiom {
+            case .pad:
+                self.bootIpad()
+            default:
+                self.bootIphone()
+        }
+        
+        return true
+    }
+    func bootIphone() {
         let window = UIWindow(frame: UIScreen.main.bounds)
         
+        window.makeKeyAndVisible()
+        self.window = window
+    }
+    func bootIpad() {
+        let window = UIWindow(frame: UIScreen.main.bounds)
         if isLoggedIn() {
             showMainScreen(window: window)
         }else {
@@ -21,9 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window.makeKeyAndVisible()
         self.window = window
-        
-        return true
     }
+    
     func isLoggedIn() -> Bool {
         return UserDefaults.standard.bool(forKey: "isLoggedIn")
     }
