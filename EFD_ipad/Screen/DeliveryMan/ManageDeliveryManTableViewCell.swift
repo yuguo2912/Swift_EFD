@@ -13,6 +13,11 @@ class ManageDeliveryManTableViewCell: UITableViewCell {
     @IBOutlet weak var mailLabel: UILabel!
     @IBOutlet weak var firstnameLabel: UILabel!
     @IBOutlet weak var lastnameLabel: UILabel!
+    
+    var user: User?
+    
+    var onProfileButtonTapped: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -23,5 +28,9 @@ class ManageDeliveryManTableViewCell: UITableViewCell {
         self.firstnameLabel.text = user.name
         self.lastnameLabel.text = user.lastname
         self.mailLabel.text = user.email
+        self.user = user
+    }
+    @IBAction func handleCheckoutDeliveryManProfile(_ sender: Any) {
+        onProfileButtonTapped?()
     }
 }
