@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tours2ViewController" customModule="EFD_ipad" customModuleProvider="target">
+            <connections>
+                <outlet property="listeTableView" destination="X3q-rB-IRf" id="ODW-Ir-SAj"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YT4-Hx-uKY">
+                    <rect key="frame" x="10" y="69" width="98" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Visualiser"/>
+                    <connections>
+                        <action selector="goToMap:" destination="-1" eventType="touchUpInside" id="mQS-yg-x73"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="X3q-rB-IRf">
+                    <rect key="frame" x="0.0" y="104" width="393" height="714"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hql-K8-MuK">
+                    <rect key="frame" x="314" y="69" width="69" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Photo"/>
+                    <connections>
+                        <action selector="goToPicture:" destination="-1" eventType="touchUpInside" id="BFl-f4-9Rz"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="YT4-Hx-uKY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="0cO-5r-PPR"/>
+                <constraint firstItem="Hql-K8-MuK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="CXg-3r-dtd"/>
+                <constraint firstItem="X3q-rB-IRf" firstAttribute="top" secondItem="YT4-Hx-uKY" secondAttribute="bottom" id="JFO-SS-mIe"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Hql-K8-MuK" secondAttribute="trailing" constant="10" id="KTF-tm-AhJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="X3q-rB-IRf" secondAttribute="trailing" id="OPK-mD-6rM"/>
+                <constraint firstItem="X3q-rB-IRf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="T8L-Ke-Iog"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="X3q-rB-IRf" secondAttribute="bottom" id="Yj7-5Q-8Ts"/>
+                <constraint firstItem="YT4-Hx-uKY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="cvu-dv-hYv"/>
+            </constraints>
+            <point key="canvasLocation" x="36" y="0.0"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

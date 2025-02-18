@@ -11,7 +11,7 @@ class ManageToursViewController: UIViewController {
 
     @IBOutlet weak var createTourButton: UIButton!
     @IBOutlet weak var toursTableView: UITableView!
-    
+     
     let packageService: PackageService = PackageService.getInstance()
     
     var tours: [AllToursDTO]? {

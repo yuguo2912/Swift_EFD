@@ -5,6 +5,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = UINavigationController(rootViewController: Tours2ViewController())
+        window.makeKeyAndVisible()
+        self.window = window
+        
+        
+        return true
+    }
+    
+    
+    
+    
+    
+    
+    /*var window: UIWindow?
+
     let splitViewController = UISplitViewController(style: .doubleColumn)
     
     let vcList: [UIViewController] = [ProfileViewController(), ManageDeliveryMansViewController(),ManageToursViewController(),MapViewController()]
@@ -63,5 +81,5 @@ extension AppDelegate: MenuProtocol {
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
         (splitViewController.viewControllers.last as? UINavigationController)?.popToRootViewController(animated: false)
         (UIApplication.shared.delegate as? AppDelegate)?.showLoginScreen(window: (UIApplication.shared.delegate as! AppDelegate).window!)
-    }
+    }*/
 }
