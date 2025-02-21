@@ -1,0 +1,40 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "GSCONTROLLER_ERROR_LOCATION" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have not enabled geolocation, please reactivate it"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas accepté la géolocalisation, veuillez la réactiver"
+          }
+        }
+      }
+    },
+    "GSCONTROLLER_ERROR_LOCATION_SETTINGS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reactivate my geolocation"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réactiver ma géolocalisation"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
