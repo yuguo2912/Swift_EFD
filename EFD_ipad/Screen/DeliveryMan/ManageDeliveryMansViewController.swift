@@ -11,6 +11,7 @@ class ManageDeliveryMansViewController: UIViewController {
 
     @IBOutlet weak var deliveryManTableView: UITableView!
     
+    @IBOutlet weak var createDeliveryManBT: UIButton!
     let adminService = AdminService.getInstance()
     
     var deliveryMans: [User]? {
@@ -47,6 +48,15 @@ class ManageDeliveryMansViewController: UIViewController {
             }
         }
     }
+    
+    
+    @IBAction func handleCreateDeliveryManBT(_ sender: Any) {
+        let createDeliveryManVC = CreateDeliveryManViewController()
+        self.navigationController?.pushViewController(createDeliveryManVC, animated: true)
+    }
+    
+    
+    
 }
 
 

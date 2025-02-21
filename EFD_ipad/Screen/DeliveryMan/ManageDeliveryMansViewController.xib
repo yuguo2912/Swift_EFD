@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageDeliveryMansViewController" customModule="EFD_ipad" customModuleProvider="target">
             <connections>
+                <outlet property="createDeliveryManBT" destination="nx2-gQ-Xm0" id="UCO-wE-Gfp"/>
                 <outlet property="deliveryManTableView" destination="T3Z-al-oqO" id="LcB-vD-OJN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -32,6 +33,9 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Crée un livreur"/>
+                    <connections>
+                        <action selector="handleCreateDeliveryManBT:" destination="-1" eventType="touchUpInside" id="82N-XV-LEZ"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

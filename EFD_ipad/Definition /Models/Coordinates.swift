@@ -5,7 +5,7 @@
 //  Created by Gil Rodrigues on 06/02/2025.
 //
 
-class Coordinates: Decodable, CustomStringConvertible {
+class Coordinates: Decodable, CustomStringConvertible, Encodable {
     var description: String {
         return "Coordinates(latitude: \(latitude), longitude: \(longitude))"
     }

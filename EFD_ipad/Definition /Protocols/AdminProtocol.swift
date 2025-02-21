@@ -7,6 +7,6 @@
 
 protocol AdminProtocol {
     func getDeliveryMans(completion: @escaping (Result<[User], Error>) -> Void)
-    func createDeliveryMan(user: User, completion: @escaping (Result<Bool, Error>) -> Void)
+    func createDeliveryMan(deliveryMan: CreateDeliveryManDTO, completion: @escaping (Result<Bool, Error>) -> Void)
     
 }
