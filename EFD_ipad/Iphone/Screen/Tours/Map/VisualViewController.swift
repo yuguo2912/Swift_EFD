@@ -22,9 +22,13 @@ class VisualViewController: UIViewController {
         }
     }
     
-    let deliveryService = PackageDeliveryService() // 🔥 Correction ici
+    let deliveryService = PackageDeliveryService()
     var locationManager: CLLocationManager!
     var currentDeliver: User?
+    var tour: AllToursDTO?
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +43,7 @@ class VisualViewController: UIViewController {
         } else {
             print(" ")
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,11 +82,6 @@ class VisualViewController: UIViewController {
     
     // ✅ Récupération des livraisons pour le livreur connecté
     private func fetchDeliveriesForCurrentUser() {
-        /*guard let userID = currentDeliver?.id else{
-            
-            print("⚠️ Aucun userID trouvé. Impossible de récupérer les livraisons.")
-            return
-        }*/
         
         deliveryService.getAllDeliveries { [weak self] result in
             DispatchQueue.main.async {
@@ -159,7 +159,10 @@ extension VisualViewController: MKMapViewDelegate {
         let annotationLocation = CLLocation(latitude: annotationCoordinate.latitude, longitude: annotationCoordinate.longitude)
         let distance = annotationLocation.distance(from: userLocation)
         print("Distance au point de livraison: \(distance) mètres")
+        let picture = PicutreViewController()
+        self.navigationController?.pushViewController(picture, animated: true)
     }
+
 }
 
 // ✅ Gestion des mises à jour de localisation
@@ -168,3 +171,5 @@ extension VisualViewController: CLLocationManagerDelegate {
         self.handleStatusUpdate(locationManager: manager)
     }
 }
+
+//fais moi une extension pour m'ouvrir une nouvelle vue quand j'appuie sur la pin

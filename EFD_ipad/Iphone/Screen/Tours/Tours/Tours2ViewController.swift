@@ -12,6 +12,7 @@ class Tours2ViewController: UIViewController {
     @IBOutlet weak var listeTableView: UITableView!
     
     let packageService: PackageService = PackageService.getInstance()
+    let userID = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +20,7 @@ class Tours2ViewController: UIViewController {
         self.listeTableView.delegate = self
         self.listeTableView.dataSource = self
         print("filtertours contient: \(filtertours?.count ?? 0) éléments")
-        
-        
+        //fetchTours()
         
         // Do any additional setup after loading the view.
     }
@@ -51,23 +51,24 @@ class Tours2ViewController: UIViewController {
             }
         }
     }
-    
-    
-    @IBAction func goToMap(_ sender: Any) {
-        let visual = VisualViewController()
-        self.navigationController?.pushViewController(visual, animated: true)
-    }
-    
-    @IBAction func goToPicture(_ sender: Any) {
-        let picture = PicutreViewController()
-        self.navigationController?.pushViewController(picture, animated: true)
-    }
+    /*func fetchTours(){
+        MockTourService.shared.getAllTours(for: userID){
+            [weak self] tours in DispatchQueue.main.async{
+                self?.filtertours = tours
+            }
+        }
+    }*/
     
     
 }
 extension Tours2ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let map = VisualViewController()
+        self.navigationController?.pushViewController(map, animated: true)
+        
     }
 }
 

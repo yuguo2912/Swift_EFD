@@ -29,3 +29,4 @@ class AllToursDTO: Decodable, CustomStringConvertible {
         case status = "status"
     }
 }
+
