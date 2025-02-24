@@ -8,7 +8,7 @@
 import UIKit
 
 class ManageToursViewController: UIViewController {
-
+    
     @IBOutlet weak var createTourButton: UIButton!
     @IBOutlet weak var toursTableView: UITableView!
     
@@ -35,6 +35,7 @@ class ManageToursViewController: UIViewController {
                 case .success(let tours):
                     self.tours = tours
                     print(tours)
+                    self.toursTableView.reloadData()
                 case .failure(let error):
                     let alert = UIAlertController(title: "Erreur", message: error.localizedDescription, preferredStyle: .alert)
                     let retryAction = UIAlertAction(title: "Réessayer", style: .default) { _ in
@@ -49,7 +50,13 @@ class ManageToursViewController: UIViewController {
             }
         }
     }
-
+    
+    @IBAction func handleCreateTour(_ sender: Any) {
+        let createTourVC = CreateTourViewController()
+        self.navigationController?.pushViewController(createTourVC, animated: true)
+    }
+    
+    
 }
 
 extension ManageToursViewController: UITableViewDelegate {

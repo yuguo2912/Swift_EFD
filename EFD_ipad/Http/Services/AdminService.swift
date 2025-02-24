@@ -13,8 +13,9 @@ class AdminService: AdminProtocol {
     
     private let adminURL: String = "http://localhost:8000/admin/"
     private let createDeliveryManURL: String = "http://localhost:8000/admin/createDeliveryPerson"
+    private let createDeliveryTourURL: String = "http://localhost:8000/admin/createDeliveryTour"
     
-    private var deliveryMans: [User] = []
+    var deliveryMans: [User] = []
     
     var admin: User?
     
@@ -112,5 +113,46 @@ class AdminService: AdminProtocol {
         
     }
     
+    func createDeliveryTour(deliveryTour: CreateDeliveryTourDTO, completion: @escaping (Result<DeliveryTourDTO, any Error>) -> Void) {
+        var request = URLRequest(url: URL(string: createDeliveryTourURL)!)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(TokenManager.getInstance().getToken() ?? UserDefaults.standard.string(forKey: "token") ?? "")", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonData = try? JSONEncoder().encode(deliveryTour)
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, let data = data else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Réponse invalide"])))
+                return
+            }
+
+            if httpResponse.statusCode == 400 {
+                let errorMessage = String(data: data, encoding: .utf8) ?? "Erreur inconnue"
+                print("Erreur API : \(errorMessage)")
+                completion(.failure(NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: errorMessage])))
+                return
+            }
+            
+            
+            do {
+                let deliveryTour = try JSONDecoder().decode(DeliveryTourDTO.self, from: data)
+                completion(.success(deliveryTour))
+            } catch {
+                print(" Erreur de décodage JSON : \(error.localizedDescription)")
+                completion(.failure(error))
+            }
+            
+        }
+        task.resume()
+        
+        
+    }
     
 }

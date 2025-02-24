@@ -33,6 +33,9 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Crée une tounée"/>
+                    <connections>
+                        <action selector="handleCreateTour:" destination="-1" eventType="touchUpInside" id="S0m-PZ-b0Q"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

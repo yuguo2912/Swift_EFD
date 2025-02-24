@@ -21,6 +21,7 @@ class CreateDeliveryManViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         errorLabel.isHidden = true
+        
     }
 
     

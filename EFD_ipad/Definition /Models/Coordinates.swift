@@ -36,4 +36,12 @@ class Coordinates: Decodable, CustomStringConvertible, Encodable {
     func getLongitude() -> Double {
         return longitude
     }
+    
+    func setLatitude(_ latitude: Double) {
+        self.latitude = latitude
+    }
+    
+    func setLongitude(_ longitude: Double) {
+        self.longitude = longitude
+    }
 }
