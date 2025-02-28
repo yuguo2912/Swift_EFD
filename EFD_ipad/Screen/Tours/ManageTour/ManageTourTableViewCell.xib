@@ -48,6 +48,9 @@
                         <buttonConfiguration key="configuration" style="filled" title="Modifier">
                             <color key="baseBackgroundColor" systemColor="systemOrangeColor"/>
                         </buttonConfiguration>
+                        <connections>
+                            <action selector="handleEditTour:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4hZ-9S-k72"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBb-Gw-K9U">
                         <rect key="frame" x="738" y="5" width="104" height="35"/>

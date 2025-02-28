@@ -10,4 +10,7 @@ protocol PackageProtocol {
     func deleteTour(tourId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
     func deletePackage(packageId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
     func editPackage(package: PackageDTO, completion: @escaping (Result<PackageDTO, Error>) -> Void)
+    func updateDeliveryStatus(deliveryStatus: UpdateDeliveryStatusDTO, completion: @escaping (Result<Bool, Error>) -> Void)
+    func getPackagesByTourId(tourId: Int, completion: @escaping (Result<[PackageDTO], Error>) -> Void)
+    func updateDeliveryManAssigned(updateAssignedToDTO: UpdateAssignedToDTO, completion: @escaping (Result<Bool, Error>) -> Void)
 }

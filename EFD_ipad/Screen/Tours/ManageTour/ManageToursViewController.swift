@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ManageToursViewController: UIViewController {
+class ManageToursViewController: UIViewController, ManageTourCellProtocol {
     
     @IBOutlet weak var createTourButton: UIButton!
     @IBOutlet weak var toursTableView: UITableView!
@@ -56,7 +56,13 @@ class ManageToursViewController: UIViewController {
         self.navigationController?.pushViewController(createTourVC, animated: true)
     }
     
-    
+    func didDeleteTour(_ tourId: Int) {
+        guard var tours = self.tours else { return }
+        if let index = tours.firstIndex(where: { $0.tourId == tourId }) {
+            tours.remove(at: index)
+            self.tours = tours
+        }
+    }
 }
 
 extension ManageToursViewController: UITableViewDelegate {
@@ -72,7 +78,10 @@ extension ManageToursViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TourTableViewCell", for: indexPath) as! ManageTourTableViewCell
-        cell.redraw(tour: self.tours![indexPath.row])
+        if let tours = self.tours {
+            cell.redraw(tour: tours[indexPath.row])
+        }
+        cell.delegate = self
         return cell
     }
 }

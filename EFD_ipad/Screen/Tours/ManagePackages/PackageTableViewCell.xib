@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="KGk-i7-Jjw" customClass="PackageTableViewCell" customModule="EFD_ipad" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="1032" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="1032" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lQ-Fo-lEf">
+                        <rect key="frame" x="908" y="8" width="104" height="35"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="Supprimer">
+                            <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="handleDeletePackage:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1xt-C0-GRf"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1go-ca-5AP">
+                        <rect key="frame" x="732.33333333333337" y="8" width="167.66666666666663" height="35"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="Preuve de livraison"/>
+                        <connections>
+                            <action selector="handleDeliveryProof:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FDk-SG-D0M"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56t-GL-FnK">
+                        <rect key="frame" x="647.33333333333337" y="8" width="77" height="35"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="A livrer"/>
+                        <connections>
+                            <action selector="handleUpdateStatus:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="14Q-Pw-z7q"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bhz-We-f5N">
+                        <rect key="frame" x="220" y="8" width="228" height="35"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="Changer le lieu de livraison"/>
+                        <connections>
+                            <action selector="handleUpdateDeliveryLocation:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JpZ-mh-VbH"/>
+                        </connections>
+                    </button>
+                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="faX-rc-07Y">
+                        <rect key="frame" x="455.99999999999994" y="8" width="183.33333333333331" height="35"/>
+                        <connections>
+                            <action selector="handleUpdateDeliveryDate:" destination="KGk-i7-Jjw" eventType="valueChanged" id="V64-IV-47l"/>
+                        </connections>
+                    </datePicker>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N° :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3R3-5X-i4g">
+                        <rect key="frame" x="20" y="15" width="29" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qko-8l-Xnw">
+                        <rect key="frame" x="56" y="15" width="156" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="9YY-xd-qxw"/>
+                            <constraint firstAttribute="width" constant="156" id="w4n-kl-JLf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="1go-ca-5AP" secondAttribute="bottom" constant="7" id="170-y5-krG"/>
+                    <constraint firstItem="Bhz-We-f5N" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="4OR-MQ-rmw"/>
+                    <constraint firstItem="3R3-5X-i4g" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="4bR-bP-v8l"/>
+                    <constraint firstItem="1go-ca-5AP" firstAttribute="leading" secondItem="56t-GL-FnK" secondAttribute="trailing" constant="8" symbolic="YES" id="5SF-yL-WcX"/>
+                    <constraint firstAttribute="bottom" secondItem="56t-GL-FnK" secondAttribute="bottom" constant="7" id="IRc-xD-LFt"/>
+                    <constraint firstAttribute="trailing" secondItem="2lQ-Fo-lEf" secondAttribute="trailing" constant="20" symbolic="YES" id="KVP-DO-m6f"/>
+                    <constraint firstItem="56t-GL-FnK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Lpl-xj-LJ5"/>
+                    <constraint firstItem="qko-8l-Xnw" firstAttribute="leading" secondItem="3R3-5X-i4g" secondAttribute="trailing" constant="7" id="ONI-ey-yob"/>
+                    <constraint firstItem="3R3-5X-i4g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Orq-nH-m2F"/>
+                    <constraint firstItem="faX-rc-07Y" firstAttribute="leading" secondItem="Bhz-We-f5N" secondAttribute="trailing" constant="8" symbolic="YES" id="QKh-1k-CGL"/>
+                    <constraint firstItem="56t-GL-FnK" firstAttribute="leading" secondItem="faX-rc-07Y" secondAttribute="trailing" constant="8" symbolic="YES" id="aWE-kc-JyM"/>
+                    <constraint firstItem="faX-rc-07Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="bbW-09-9bf"/>
+                    <constraint firstItem="Bhz-We-f5N" firstAttribute="leading" secondItem="qko-8l-Xnw" secondAttribute="trailing" constant="8" symbolic="YES" id="dJx-UO-SQ4"/>
+                    <constraint firstItem="2lQ-Fo-lEf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="dgB-Zb-aBG"/>
+                    <constraint firstItem="1go-ca-5AP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="dgN-Ru-zIa"/>
+                    <constraint firstAttribute="bottom" secondItem="faX-rc-07Y" secondAttribute="bottom" constant="7" id="gh9-aC-3nV"/>
+                    <constraint firstItem="2lQ-Fo-lEf" firstAttribute="leading" secondItem="1go-ca-5AP" secondAttribute="trailing" constant="8" symbolic="YES" id="jKk-0k-Z7x"/>
+                    <constraint firstAttribute="bottom" secondItem="qko-8l-Xnw" secondAttribute="bottom" constant="14" id="kIO-Iw-17g"/>
+                    <constraint firstItem="1go-ca-5AP" firstAttribute="leading" secondItem="56t-GL-FnK" secondAttribute="trailing" constant="8" symbolic="YES" id="lVK-mj-5Tt"/>
+                    <constraint firstAttribute="bottom" secondItem="Bhz-We-f5N" secondAttribute="bottom" constant="7" id="nyK-F4-BlA"/>
+                    <constraint firstItem="56t-GL-FnK" firstAttribute="leading" secondItem="faX-rc-07Y" secondAttribute="trailing" constant="8" symbolic="YES" id="q6v-Li-BaJ"/>
+                    <constraint firstItem="faX-rc-07Y" firstAttribute="leading" secondItem="Bhz-We-f5N" secondAttribute="trailing" constant="8" symbolic="YES" id="s69-bu-1hM"/>
+                    <constraint firstAttribute="bottom" secondItem="3R3-5X-i4g" secondAttribute="bottom" constant="14" id="u01-BD-sgW"/>
+                    <constraint firstItem="2lQ-Fo-lEf" firstAttribute="leading" secondItem="1go-ca-5AP" secondAttribute="trailing" constant="8" symbolic="YES" id="u3H-De-TA4"/>
+                    <constraint firstAttribute="bottom" secondItem="2lQ-Fo-lEf" secondAttribute="bottom" constant="7" id="vZk-0N-BRK"/>
+                    <constraint firstItem="qko-8l-Xnw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="vqM-Eo-fFX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="StatusButton" destination="56t-GL-FnK" id="aB4-wl-YBQ"/>
+                <outlet property="deletePackageButton" destination="2lQ-Fo-lEf" id="InT-b7-y70"/>
+                <outlet property="deliveryDatePicker" destination="faX-rc-07Y" id="hgw-sk-PCM"/>
+                <outlet property="deliveryLocationButton" destination="Bhz-We-f5N" id="d0i-2X-KZJ"/>
+                <outlet property="packageIdLabel" destination="qko-8l-Xnw" id="OUs-66-hxo"/>
+                <outlet property="proofOfDeliveryButton" destination="1go-ca-5AP" id="g4d-BQ-mjL"/>
+            </connections>
+            <point key="canvasLocation" x="354.19847328244271" y="-35.211267605633807"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

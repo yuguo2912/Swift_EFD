@@ -16,9 +16,12 @@ class ManageTourTableViewCell: UITableViewCell {
     @IBOutlet weak var firstnameLabel: UILabel!
     @IBOutlet weak var lastnameLabel: UILabel!
     
+    weak var delegate: ManageTourCellProtocol?
+    
     let packageService = PackageService.getInstance()
     
     var tourId: Int = 0
+    var deliveryManId: Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,7 +46,14 @@ class ManageTourTableViewCell: UITableViewCell {
             self.backgroundColor = .white
         }
         self.tourId = tour.tourId!
+        self.deliveryManId = tour.userId!
         
+    }
+    @IBAction func handleEditTour(_ sender: Any) {
+        let manageTourPackagesVC = ManagePackagesViewController()
+        manageTourPackagesVC.tourId = self.tourId
+        manageTourPackagesVC.deliveryManId = self.deliveryManId
+        self.parentViewController?.navigationController?.pushViewController(manageTourPackagesVC, animated: true)
     }
     
     @IBAction func handleDelete(_ sender: Any) {
@@ -56,11 +66,7 @@ class ManageTourTableViewCell: UITableViewCell {
                     switch result {
                     case .success(_):
                         print("Tour supprimé avec succès")
-                        
-                        if let parentVC = self.parentViewController as? ManageToursViewController {
-                            parentVC.viewWillAppear(true)
-                        }
-                        
+                        self.delegate?.didDeleteTour(self.tourId)
                     case .failure(let error):
                         print("Erreur de suppression :", error.localizedDescription)
                     }
