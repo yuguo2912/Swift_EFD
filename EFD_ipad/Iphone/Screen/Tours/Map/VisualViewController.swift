@@ -83,7 +83,7 @@ class VisualViewController: UIViewController {
     // ✅ Récupération des livraisons pour le livreur connecté
     private func fetchDeliveriesForCurrentUser() {
         
-        deliveryService.getAllDeliveries { [weak self] result in
+        deliveryService.getDeliveriesForCurrentTour() { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 

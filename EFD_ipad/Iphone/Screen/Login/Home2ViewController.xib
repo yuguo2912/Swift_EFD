@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Home2ViewController" customModule="EFD_ipad" customModuleProvider="target">
             <connections>
+                <outlet property="connectionButton" destination="R2g-bg-pYq" id="eW7-xL-DwH"/>
+                <outlet property="mailTextField" destination="AQp-o0-jq7" id="17u-IP-In3"/>
+                <outlet property="passwordTextField" destination="Eau-aG-Ubf" id="YwP-EG-bbU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,9 +21,49 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="440" height="956"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ESGI Fast Delivery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5F-Ar-egE">
+                    <rect key="frame" x="50" y="72" width="340" height="52"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="43"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQp-o0-jq7">
+                    <rect key="frame" x="0.0" y="164" width="440" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eau-aG-Ubf">
+                    <rect key="frame" x="0.0" y="208" width="440" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2g-bg-pYq">
+                    <rect key="frame" x="65" y="252" width="310" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Connexion"/>
+                    <connections>
+                        <action selector="handleLogin:" destination="-1" eventType="touchUpInside" id="jG9-0b-1tq"/>
+                    </connections>
+                </button>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="140" y="-1"/>
+            <constraints>
+                <constraint firstItem="R2g-bg-pYq" firstAttribute="top" secondItem="Eau-aG-Ubf" secondAttribute="bottom" constant="10" id="04j-2n-y3h"/>
+                <constraint firstItem="Eau-aG-Ubf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Iah-m7-nqa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R2g-bg-pYq" secondAttribute="trailing" constant="65" id="MDu-7i-Z3X"/>
+                <constraint firstItem="Eau-aG-Ubf" firstAttribute="top" secondItem="AQp-o0-jq7" secondAttribute="bottom" constant="10" id="Nzk-Vg-cbL"/>
+                <constraint firstItem="C5F-Ar-egE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="Pkq-UY-hhu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="C5F-Ar-egE" secondAttribute="trailing" constant="50" id="YJQ-Fw-2gq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Eau-aG-Ubf" secondAttribute="trailing" id="c0u-bz-2f5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AQp-o0-jq7" secondAttribute="trailing" id="oeR-kb-NSZ"/>
+                <constraint firstItem="R2g-bg-pYq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="65" id="pGi-ha-fMD"/>
+                <constraint firstItem="C5F-Ar-egE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="qyy-1s-nIy"/>
+                <constraint firstItem="AQp-o0-jq7" firstAttribute="top" secondItem="C5F-Ar-egE" secondAttribute="bottom" constant="40" id="uhZ-9G-pjv"/>
+                <constraint firstItem="AQp-o0-jq7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wd3-uB-hhU"/>
+            </constraints>
+            <point key="canvasLocation" x="139.09090909090909" y="-1.2552301255230125"/>
         </view>
     </objects>
     <resources>

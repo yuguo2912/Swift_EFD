@@ -13,8 +13,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "GasStation"
+            "state" : "translated",
+            "value" : "EFD_Ipad"
           }
         }
       }

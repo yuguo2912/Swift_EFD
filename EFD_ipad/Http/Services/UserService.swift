@@ -59,7 +59,10 @@ class UserService: UserProtocol {
         }
         dataTask.resume()
     }
-    
+    func getCurrentUserId() -> Int? {
+        return TokenManager.getInstance().getTokenClaims()?.id
+    }
+
     func editUserById(id: Int, user: User, completion: @escaping (Result<Bool, any Error>) -> Void) {
         var request: URLRequest = URLRequest(url: URL(string: UserService.userURL + String(id))!)
         guard let jsonData = try? JSONSerialization.data(withJSONObject: user.toDictionary()) else {
