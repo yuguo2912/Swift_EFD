@@ -11,6 +11,12 @@
             "value" : "EFD_ipad"
           }
         },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EFD_IPAD"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22,6 +28,12 @@
     "NSCameraUsageDescription" : {
       "extractionState" : "manual",
       "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accepta la cámara"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37,6 +49,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "We need access to your location. Please enable location services."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesitamos acceso a su ubicación. Habilite los servicios de ubicación."
           }
         },
         "fr" : {

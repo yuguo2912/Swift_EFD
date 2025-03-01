@@ -11,7 +11,7 @@ class Tours2ViewController: UIViewController {
     
     @IBOutlet weak var listeTableView: UITableView!
     
-    let tourservice = TourService.getInstance()
+    let tourservice = PackageService.getInstance()
         var userID: Int?  // 🔹 Récupération dynamique de l'ID utilisateur
     //let currentUserId = TokenManager.getInstance().getTokenClaims()?.id
 

@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreLocation
-class PicutreViewController: UIViewController, CLLocationManagerDelegate {
+class PictureViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var selectedImageView: UIImageView!
     
@@ -56,7 +56,7 @@ class PicutreViewController: UIViewController, CLLocationManagerDelegate {
     }
 }
 
-extension PicutreViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension PictureViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
@@ -97,9 +97,59 @@ extension PicutreViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     private func sendDeliveryProof(_ image: UIImage, package: PackageDeliveryDTO) {
-        let urlString = "http://localhost:8000/package/setDeliveryStatus"
+        let urlString = "http://localhost:8000/package/setDeliveryProof/\(package.packageId)"
         guard let url = URL(string: urlString) else {
             showAlert(title: "Erreur", message: "URL invalide")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let boundary = UUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            showAlert(title: "Erreur", message: "Impossible de compresser l'image")
+            return
+        }
+        
+        var body = Data()
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"image\"; filename=\"proof.jpg\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+        body.append(imageData)
+        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        request.httpBody = body
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self.showAlert(title: "Erreur", message: "Problème d'upload : \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    self.showAlert(title: "Erreur", message: "Réponse serveur invalide")
+                    return
+                }
+                
+                if httpResponse.statusCode == 200 {
+                    self.updateDeliveryStatus(package: package)
+                } else {
+                    self.showAlert(title: "Erreur", message: "Upload échoué avec code \(httpResponse.statusCode)")
+                }
+            }
+        }
+        
+        task.resume()
+    }
+    
+    private func updateDeliveryStatus(package: PackageDeliveryDTO) {
+        let urlString = "http://localhost:8000/package/setDeliveryStatus"
+        guard let url = URL(string: urlString) else {
+            showAlert(title: "Erreur", message: "URL invalide pour la mise à jour du statut")
             return
         }
         
@@ -109,11 +159,7 @@ extension PicutreViewController: UIImagePickerControllerDelegate, UINavigationCo
         
         let jsonBody: [String: Any] = [
             "packageId": package.packageId,
-            "status": "delivered",
-            "latitude": userLocation?.coordinate.latitude ?? 0.0,
-            "longitude": userLocation?.coordinate.longitude ?? 0.0,
-            "deliveryLat": package.location?.getLatitude() ?? 0.0,
-            "deliveryLon": package.location?.getLongitude() ?? 0.0
+            "status": "delivered"
         ]
         
         do {
@@ -126,7 +172,7 @@ extension PicutreViewController: UIImagePickerControllerDelegate, UINavigationCo
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    self.showAlert(title: "Erreur", message: "Problème de connexion : \(error.localizedDescription)")
+                    self.showAlert(title: "Erreur", message: "Problème lors de la mise à jour du statut : \(error.localizedDescription)")
                     return
                 }
                 
@@ -136,16 +182,18 @@ extension PicutreViewController: UIImagePickerControllerDelegate, UINavigationCo
                 }
                 
                 if httpResponse.statusCode == 200 {
-                    self.showAlert(title: "Succès", message: "Colis livré avec succès ")
+                    self.showAlert(title: "Succès", message: "Colis livré avec succès !")
                     NotificationCenter.default.post(name: NSNotification.Name("PackageDelivered"), object: package.packageId)
                 } else {
-                    self.showAlert(title: "Erreur", message: "Erreur \(httpResponse.statusCode) : Impossible de valider la livraison")
+                    self.showAlert(title: "Erreur", message: "Erreur \(httpResponse.statusCode) : Échec de mise à jour")
                 }
             }
         }
         
         task.resume()
     }
+
+
     
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

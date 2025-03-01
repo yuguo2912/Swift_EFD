@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showLoginScreen(window: UIWindow) {
-        let loginVC = Home2ViewController()
+        let loginVC = HomeViewController()
         let navigationController = UINavigationController(rootViewController: loginVC)
         window.rootViewController = navigationController
     }

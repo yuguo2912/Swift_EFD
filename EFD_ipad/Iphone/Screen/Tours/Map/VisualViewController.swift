@@ -22,7 +22,7 @@ class VisualViewController: UIViewController {
         }
     }
     
-    let deliveryService = PackageDeliveryService()
+    let deliveryService = PackageService()
     var locationManager: CLLocationManager!
     var currentDeliver: User?
     var tour: AllToursDTO?
@@ -127,11 +127,14 @@ class VisualViewController: UIViewController {
     func reloadMap() {
         self.deliveryMapView.removeAnnotations(self.deliveryMapView.annotations) // Nettoie la carte
         
-        let annotations = self.deliveries.compactMap { delivery -> MKPointAnnotation? in
+        let annotations = self.deliveries
+            .filter { !$0.isDelivered}
+            .compactMap { delivery -> MKPointAnnotation? in
             guard let location = delivery.location else { return nil } // Vérifie si une location existe
             
             let annotation = MKPointAnnotation()
-            annotation.title = "Colis \(delivery.packageId)"
+            let locationTitle =  NSLocalizedString("PACKAGE_TITLE", comment: "")
+            annotation.title = String(format: "%@ %d", locationTitle, delivery.packageId)
             annotation.coordinate = CLLocationCoordinate2D(latitude: location.getLatitude(), longitude: location.getLongitude())
             return annotation
         }
@@ -159,7 +162,7 @@ extension VisualViewController: MKMapViewDelegate {
         let annotationLocation = CLLocation(latitude: annotationCoordinate.latitude, longitude: annotationCoordinate.longitude)
         let distance = annotationLocation.distance(from: userLocation)
         print("Distance au point de livraison: \(distance) mètres")
-        let picture = PicutreViewController()
+        let picture = PictureViewController()
         self.navigationController?.pushViewController(picture, animated: true)
     }
 
@@ -172,4 +175,3 @@ extension VisualViewController: CLLocationManagerDelegate {
     }
 }
 
-//fais moi une extension pour m'ouvrir une nouvelle vue quand j'appuie sur la pin

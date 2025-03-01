@@ -10,6 +10,12 @@
             "value" : "You have not enabled geolocation, please reactivate it"
           }
         },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "no has habilitado la geolocalización, por favor reactivala"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27,10 +33,39 @@
             "value" : "Reactivate my geolocation"
           }
         },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "reactivar mi geolocalización"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réactiver ma géolocalisation"
+          }
+        }
+      }
+    },
+    "PACKAGE_TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Package"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paquete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Colis"
           }
         }
       }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Home2ViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     //  LoginViewController.swift
     
