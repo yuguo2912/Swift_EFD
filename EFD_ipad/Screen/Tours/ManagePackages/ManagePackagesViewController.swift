@@ -7,8 +7,10 @@
 
 import UIKit
 
-class ManagePackagesViewController: UIViewController, PackageCellProtocol {
+class ManagePackagesViewController: UIViewController {
     
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var addPackageButton: UIButton!
     @IBOutlet weak var deliveryManPicker: UIButton!
     @IBOutlet weak var deleteTourButton: UIButton!
     @IBOutlet weak var packageTableView: UITableView!
@@ -25,6 +27,7 @@ class ManagePackagesViewController: UIViewController, PackageCellProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.errorLabel.isHidden = true
         packageTableView.register(UINib(nibName: "PackageTableViewCell", bundle: nil), forCellReuseIdentifier: "PackageTableViewCell")
         packageTableView.dataSource = self
         packageTableView.delegate = self
@@ -82,6 +85,12 @@ class ManagePackagesViewController: UIViewController, PackageCellProtocol {
         }
     }
     
+    @IBAction func handleAddPackage(_ sender: Any) {
+        let addPackageVC = CreatePackageViewController()
+        self.navigationController?.pushViewController(addPackageVC, animated: true)
+    }
+    
+    
     func updateDeliveryManMenu(_ deliveryMans: [User]) {
         var menuItems = deliveryMans.map { deliveryMan in
             UIAction(
@@ -106,23 +115,6 @@ class ManagePackagesViewController: UIViewController, PackageCellProtocol {
         if let selectedDeliveryMan = deliveryMans.first(where: { $0.id == self.deliveryManId }) {
             self.deliveryManPicker.setTitle("\(selectedDeliveryMan.name) \(selectedDeliveryMan.lastname)", for: .normal)
         }
-    }
-
-    
-    func didDeletePackage(_ package: PackageDTO) {
-        guard let index = packages.firstIndex(where: { $0.packageId == package.packageId }) else {
-            return
-        }
-        
-        self.packages.remove(at: index)
-    }
-    
-    func didUpdatePackage(_ package: PackageDTO) {
-        guard let index = packages.firstIndex(where: { $0.packageId == package.packageId}) else {
-            return
-        }
-        
-        self.packages[index] = package
     }
     
     func updateDeliveryMan() {
@@ -187,5 +179,29 @@ extension ManagePackagesViewController: UITableViewDataSource {
 extension ManagePackagesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+}
+
+extension ManagePackagesViewController: PackageCellProtocol {
+    func didDeletePackage(_ package: PackageDTO) {
+        guard let index = packages.firstIndex(where: { $0.packageId == package.packageId }) else {
+            return
+        }
+        
+        self.packages.remove(at: index)
+    }
+    
+    func didUpdatePackage(_ package: PackageDTO) {
+        guard let index = packages.firstIndex(where: { $0.packageId == package.packageId}) else {
+            return
+        }
+        
+        self.packages[index] = package
+        self.errorLabel.isHidden = true
+    }
+    
+    func errorOnDeliveryDate() {
+        self.errorLabel.isHidden = false
+        self.errorLabel.textColor = .red
     }
 }

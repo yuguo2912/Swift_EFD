@@ -8,4 +8,5 @@
 protocol PackageCellProtocol: AnyObject {
     func didDeletePackage(_ package: PackageDTO)
     func didUpdatePackage(_ package: PackageDTO)
+    func errorOnDeliveryDate()
 }

@@ -5,6 +5,8 @@
 //  Created by Gil Rodrigues on 08/02/2025.
 //
 
+import Foundation
+
 protocol PackageProtocol {
     func getAllTours(completion: @escaping (Result<[AllToursDTO], Error>) -> Void)
     func deleteTour(tourId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
@@ -13,4 +15,5 @@ protocol PackageProtocol {
     func updateDeliveryStatus(deliveryStatus: UpdateDeliveryStatusDTO, completion: @escaping (Result<Bool, Error>) -> Void)
     func getPackagesByTourId(tourId: Int, completion: @escaping (Result<[PackageDTO], Error>) -> Void)
     func updateDeliveryManAssigned(updateAssignedToDTO: UpdateAssignedToDTO, completion: @escaping (Result<Bool, Error>) -> Void)
+    func getDeliveryProof(deliveryProofPath: String, completion: @escaping (Result<Data, Error>) -> Void)
 }

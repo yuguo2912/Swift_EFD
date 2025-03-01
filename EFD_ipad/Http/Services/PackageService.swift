@@ -319,6 +319,36 @@ class PackageService: PackageProtocol {
             
         }
         task.resume()
+    }
+    
+    func getDeliveryProof(deliveryProofPath: String, completion: @escaping (Result<Data, any Error>) -> Void) {
+        var request = URLRequest(url: URL(string: self.packageURL + "getDeliveryProof/" + deliveryProofPath)!)
+        request.httpMethod = "GET"
         
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("error")
+                completion(.failure(error))
+                return
+            }
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
+                if let data = data, let errorMessage = String(data: data, encoding: .utf8) {
+                    print(data)
+                    let httpError = NSError(domain: "", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(httpError))
+                } else {
+                    let genericError = NSError(domain: "", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "Erreur inconnue"])
+                    completion(.failure(genericError))
+                }
+            }
+            
+            guard let data = data else {
+                print("Données vides reçues du serveur.")
+                return
+            }
+            
+            completion(.success(data))
+        }
+        task.resume()
     }
 }

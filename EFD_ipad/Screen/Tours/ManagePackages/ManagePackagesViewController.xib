@@ -12,8 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManagePackagesViewController" customModule="EFD_ipad" customModuleProvider="target">
             <connections>
+                <outlet property="addPackageButton" destination="uih-oi-tYk" id="hTF-YU-4Kp"/>
                 <outlet property="deleteTourButton" destination="uPH-Re-uqY" id="dvM-eo-Lm1"/>
                 <outlet property="deliveryManPicker" destination="KMg-GM-r95" id="l70-mZ-83n"/>
+                <outlet property="errorLabel" destination="awx-xb-xJh" id="hai-Ki-Rb4"/>
                 <outlet property="packageTableView" destination="ene-Rt-jmf" id="tgM-CB-CQI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -62,6 +64,23 @@
                     </menu>
                     <state key="normal" title="Livreur"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uih-oi-tYk">
+                    <rect key="frame" x="982.5" y="191" width="141.5" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Ajouter un colis"/>
+                    <connections>
+                        <action selector="handleAddPackage:" destination="-1" eventType="touchUpInside" id="A4E-c2-5St"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La date de livraison ne peut pas etre antérieur à la date actuelle." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awx-xb-xJh">
+                    <rect key="frame" x="838" y="90" width="494" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="494" id="nRG-jf-wfv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -73,13 +92,17 @@
                 <constraint firstItem="ene-Rt-jmf" firstAttribute="top" secondItem="KMg-GM-r95" secondAttribute="bottom" constant="120" id="FYa-gB-Kmc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ene-Rt-jmf" secondAttribute="trailing" constant="20" id="JKS-PV-HLi"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ene-Rt-jmf" secondAttribute="bottom" constant="20" id="NMd-aX-KQp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="awx-xb-xJh" secondAttribute="trailing" constant="34" id="Rr8-d7-EIq"/>
                 <constraint firstItem="KMg-GM-r95" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W4E-hv-zfP"/>
                 <constraint firstItem="uPH-Re-uqY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="167" id="WAZ-0j-d8f"/>
                 <constraint firstItem="ene-Rt-jmf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="XsC-3b-Acf"/>
                 <constraint firstItem="y1q-g0-Fhl" firstAttribute="top" secondItem="a9h-7t-frD" secondAttribute="bottom" constant="119" id="cT3-44-8sc"/>
                 <constraint firstItem="a9h-7t-frD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kiT-5I-NtG"/>
+                <constraint firstItem="uPH-Re-uqY" firstAttribute="leading" secondItem="uih-oi-tYk" secondAttribute="trailing" constant="47" id="lwz-VX-fzB"/>
                 <constraint firstItem="a9h-7t-frD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mFT-kP-8CJ"/>
+                <constraint firstItem="awx-xb-xJh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="66" id="pL1-iw-Z7Y"/>
                 <constraint firstItem="ene-Rt-jmf" firstAttribute="top" secondItem="uPH-Re-uqY" secondAttribute="bottom" constant="111" id="sco-dG-EB8"/>
+                <constraint firstItem="uih-oi-tYk" firstAttribute="baseline" secondItem="uPH-Re-uqY" secondAttribute="baseline" id="yBf-Kr-EFd"/>
             </constraints>
             <point key="canvasLocation" x="129.57540263543191" y="20.5078125"/>
         </view>
@@ -89,7 +112,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

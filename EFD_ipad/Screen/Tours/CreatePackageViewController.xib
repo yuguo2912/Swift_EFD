@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatePackageViewController" customModule="EFD_ipad" customModuleProvider="target">
+            <connections>
+                <outlet property="adressTF" destination="blc-BJ-emE" id="Sdx-Gn-PBL"/>
+                <outlet property="createPackageButton" destination="V2I-u0-sYX" id="isW-Uj-ptu"/>
+                <outlet property="deliveryDatePicker" destination="tTR-Dt-ZqP" id="DXF-kJ-Sjl"/>
+                <outlet property="deliveryMap" destination="mdJ-an-6Tz" id="Ybb-3K-hPS"/>
+                <outlet property="postalCodeTF" destination="9T9-sm-YkD" id="GcW-5d-Crk"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code postal :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4OV-fK-eeG">
+                    <rect key="frame" x="376" y="184" width="101" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9T9-sm-YkD">
+                    <rect key="frame" x="494" y="176" width="126" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="126" id="sNs-Y3-LpT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" textContentType="postal-code"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crée un colis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VED-mU-o5s">
+                    <rect key="frame" x="562.5" y="24" width="241" height="53"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdJ-an-6Tz">
+                    <rect key="frame" x="20" y="231" width="1326" height="773"/>
+                    <standardMapConfiguration key="preferredConfiguration"/>
+                </mapView>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="tTR-Dt-ZqP">
+                    <rect key="frame" x="628" y="177.5" width="125" height="34.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="125" id="SxZ-ih-L0M"/>
+                    </constraints>
+                </datePicker>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adresse: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuI-2m-NnL">
+                    <rect key="frame" x="20" y="186" width="71" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="blc-BJ-emE">
+                    <rect key="frame" x="99" y="178" width="269" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="a5s-ex-qbI"/>
+                        <constraint firstAttribute="width" constant="269" id="fWH-um-XcL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" textContentType="street-address"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2I-u0-sYX">
+                    <rect key="frame" x="1276" y="178" width="70" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="huc-Cy-GiX"/>
+                        <constraint firstAttribute="width" constant="70" id="nXF-Ye-rKx"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Créer">
+                        <color key="baseBackgroundColor" name="AccentColor"/>
+                    </buttonConfiguration>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="mdJ-an-6Tz" firstAttribute="top" secondItem="PuI-2m-NnL" secondAttribute="bottom" constant="24" id="3u5-si-HtK"/>
+                <constraint firstItem="mdJ-an-6Tz" firstAttribute="top" secondItem="blc-BJ-emE" secondAttribute="bottom" constant="19" id="85v-4A-BiA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mdJ-an-6Tz" secondAttribute="trailing" constant="20" id="DpA-Uw-Rug"/>
+                <constraint firstItem="VED-mU-o5s" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IH0-Up-eOr"/>
+                <constraint firstItem="VED-mU-o5s" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Je6-rA-95T"/>
+                <constraint firstItem="mdJ-an-6Tz" firstAttribute="top" secondItem="tTR-Dt-ZqP" secondAttribute="bottom" constant="19" id="NMw-jd-6Am"/>
+                <constraint firstItem="9T9-sm-YkD" firstAttribute="leading" secondItem="4OV-fK-eeG" secondAttribute="trailing" constant="17" id="T9e-1N-Hmu"/>
+                <constraint firstItem="mdJ-an-6Tz" firstAttribute="top" secondItem="4OV-fK-eeG" secondAttribute="bottom" constant="26" id="WKw-9i-MkU"/>
+                <constraint firstItem="blc-BJ-emE" firstAttribute="leading" secondItem="PuI-2m-NnL" secondAttribute="trailing" constant="8" symbolic="YES" id="YsC-CY-SNy"/>
+                <constraint firstItem="mdJ-an-6Tz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="aNq-jS-56b"/>
+                <constraint firstItem="mdJ-an-6Tz" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="ahI-pr-JIC"/>
+                <constraint firstItem="mdJ-an-6Tz" firstAttribute="top" secondItem="V2I-u0-sYX" secondAttribute="bottom" constant="19" id="b0N-UN-dU4"/>
+                <constraint firstItem="V2I-u0-sYX" firstAttribute="trailing" secondItem="mdJ-an-6Tz" secondAttribute="trailing" id="bXe-xe-a0c"/>
+                <constraint firstItem="mdJ-an-6Tz" firstAttribute="top" secondItem="9T9-sm-YkD" secondAttribute="bottom" constant="21" id="bzW-v8-0sQ"/>
+                <constraint firstItem="4OV-fK-eeG" firstAttribute="leading" secondItem="blc-BJ-emE" secondAttribute="trailing" constant="8" symbolic="YES" id="k1n-OL-Xft"/>
+                <constraint firstItem="tTR-Dt-ZqP" firstAttribute="leading" secondItem="9T9-sm-YkD" secondAttribute="trailing" constant="8" symbolic="YES" id="sKi-14-Oay"/>
+            </constraints>
+            <point key="canvasLocation" x="130.89311859443629" y="-12.3046875"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

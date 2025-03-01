@@ -20,11 +20,14 @@ class PackageTableViewCell: UITableViewCell {
     let packageService = PackageService.getInstance()
     weak var delegate: PackageCellProtocol?
 
-    var package: PackageDTO?
+    var package: PackageDTO = PackageDTO() {
+        didSet {
+            self.setUpCalendar()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     func redraw(package: PackageDTO) {
@@ -44,15 +47,31 @@ class PackageTableViewCell: UITableViewCell {
     }
     
     func setUpCalendar() {
-        print("SETUP CALENDAR")
         self.deliveryDatePicker.datePickerMode = .date
         
-        if let deliveryDate = self.package?.deliveryDate, let date = getDateFromString(dateString: deliveryDate) {
-            self.deliveryDatePicker.date = date
+        guard let isDelivered = self.package.isDelivered else {
+            return
         }
         
-        if let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) {
-            deliveryDatePicker.minimumDate = tomorrow
+        guard let deliveryDateStr = self.package.deliveryDate,
+              let deliveryDate = getDateFromString(dateString: deliveryDateStr) else {
+            return
+        }
+        
+        let today = Calendar.current.startOfDay(for: Date())
+
+        self.deliveryDatePicker.date = deliveryDate
+
+        if isDelivered {
+            self.deliveryDatePicker.backgroundColor = .green
+            self.deliveryDatePicker.isEnabled = false
+        } else {
+            self.deliveryDatePicker.isEnabled = true
+            if deliveryDate < today {
+                self.deliveryDatePicker.backgroundColor = .red
+            } else {
+                self.deliveryDatePicker.backgroundColor = .clear
+            }
         }
     }
 
@@ -87,14 +106,14 @@ class PackageTableViewCell: UITableViewCell {
     }
     
     func deletePackage() {
-        guard let packageId = self.package?.packageId else {
+        guard let packageId = self.package.packageId else {
             return
         }
         packageService.deletePackage(packageId: packageId) { result in
             DispatchQueue.main.async{
                 switch result {
                 case .success:
-                    self.delegate?.didDeletePackage(self.package!)
+                    self.delegate?.didDeletePackage(self.package)
                 case .failure(let error):
                     let alert = UIAlertController(title: "Erreur", message: error.localizedDescription, preferredStyle: .alert)
                     let retryAction = UIAlertAction(title: "Ressayer", style: .default) { _ in
@@ -109,7 +128,57 @@ class PackageTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func handleDeliveryProof(_ sender: Any) {
+    @IBAction func handleDeliveryProof(_ sender: UIButton) {
+        self.displayDeliveryProof(sender)
+    }
+    
+    func displayDeliveryProof(_ sender: UIView) {
+        guard let deliveryProof = self.package.deliveryProof else { return }
+        print(deliveryProof)
+        packageService.getDeliveryProof(deliveryProofPath: deliveryProof) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    self.showDeliveryProof(data, sender)
+                case .failure:
+                    self.showGetDeliveryProofError(sender)
+                }
+            }
+        }
+        
+    }
+    
+    func showDeliveryProof(_ data: Data, _ sender: UIView) {
+        guard let image = UIImage(data: data) else { return }
+        
+        let popoverVC = UIViewController()
+        popoverVC.modalPresentationStyle = .popover
+        popoverVC.preferredContentSize = CGSize(width: 500, height: 500) //
+
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame = CGRect(x: 0, y: 10, width: 480, height: 480)
+        popoverVC.view.addSubview(imageView)
+
+        if let popoverController = popoverVC.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+            popoverController.permittedArrowDirections = .any
+        }
+
+        self.parentViewController?.present(popoverVC, animated: true)
+    }
+
+    
+    func showGetDeliveryProofError(_ sender: UIView) {
+        let alert = UIAlertController(title: "Erreur", message: "Impossible de charger l'image", preferredStyle: .alert)
+        let retryAction = UIAlertAction(title: "Réessayer", style: .default) { _ in
+            self.displayDeliveryProof(sender)
+        }
+        let cancelAction = UIAlertAction(title: "Annuler", style: .cancel)
+        alert.addAction(retryAction)
+        alert.addAction(cancelAction)
+        self.window?.rootViewController?.present(alert, animated: true)
     }
     
     @IBAction func handleUpdateStatus(_ sender: Any) {
@@ -125,8 +194,8 @@ class PackageTableViewCell: UITableViewCell {
     }
     
     func updateStatus() {
-        guard let packageId = self.package?.packageId else { return }
-        guard let status = self.package?.isDelivered else { return }
+        guard let packageId = self.package.packageId else { return }
+        guard let status = self.package.isDelivered else { return }
         
         let newStatus = !status
 
@@ -136,10 +205,9 @@ class PackageTableViewCell: UITableViewCell {
             DispatchQueue.main.async {
                 switch result {
                     case .success:
-                        self.package?.isDelivered = newStatus
+                        self.package.isDelivered = newStatus
                         self.setStatusButton(status: newStatus)
-                        self.redraw(package: self.package! )
-                        print("1")
+                        self.redraw(package: self.package)
                     case .failure(let error):
                         let alert = UIAlertController(title: "Erreur", message: error.localizedDescription, preferredStyle: .alert)
                         let retryAction = UIAlertAction(title: "Ressayer", style: .default) { _ in
@@ -155,6 +223,11 @@ class PackageTableViewCell: UITableViewCell {
     }
 
     @IBAction func handleUpdateDeliveryDate(_ sender: Any) {
+        if self.deliveryDatePicker.date < Date() {
+            self.delegate?.errorOnDeliveryDate()
+            return
+        }
+
         let formatter = ISO8601DateFormatter()
         let deliveryDate = formatter.string(from: self.deliveryDatePicker.date)
         self.updateDeliveryDate(deliveryDate: deliveryDate)
@@ -162,16 +235,15 @@ class PackageTableViewCell: UITableViewCell {
     
     func updateDeliveryDate(deliveryDate: String) {
         
-        self.package?.deliveryDate = deliveryDate
+        self.package.deliveryDate = deliveryDate
         let packageToUpdate = self.package
         
-        packageService.editPackage(package: packageToUpdate!) { result in
+        packageService.editPackage(package: packageToUpdate) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let package):
                     self.package = package
                     self.delegate?.didUpdatePackage(package)
-                    print("success")
                 case .failure(let error):
                     let alert = UIAlertController(title: "Erreur", message: error.localizedDescription, preferredStyle: .alert)
                     let retryAction = UIAlertAction(title: "Ressayer", style: .default) { _ in
@@ -190,7 +262,7 @@ class PackageTableViewCell: UITableViewCell {
     
     @IBAction func handleUpdateDeliveryLocation(_ sender: Any) {
         let editDeliveryLocationVC = EditPackageViewController()
-        editDeliveryLocationVC.package = self.package!
+        editDeliveryLocationVC.package = self.package
         self.parentViewController?.navigationController?.pushViewController(editDeliveryLocationVC, animated: true)
     }
 }
