@@ -10,6 +10,7 @@ import MapKit
 
 class CreatePackageViewController: UIViewController {
 
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var adressTF: UITextField!
     @IBOutlet weak var postalCodeTF: UITextField!
     @IBOutlet weak var createPackageButton: UIButton!
@@ -18,20 +19,191 @@ class CreatePackageViewController: UIViewController {
     
     var package: PackageDTO = PackageDTO() {
         didSet {
-            //self.loadMap()
+            self.loadMap()
+            self.loadAdressTF()
         }
     }
     
-    var deliveryManId: Int = 0
     var tourId: Int = 0
+    
+    let packageService = PackageService.getInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.adressTF.delegate = self
+        self.postalCodeTF.delegate = self
+        self.deliveryMap.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //self.setupCalendar()
+        self.setupCalendar()
     }
     
+    func setupCalendar() {
+        self.deliveryDatePicker.datePickerMode = .date
+        self.deliveryDatePicker.minimumDate = Date()
+    }
+    
+    func loadMap() {
+        guard let deliveryMap = self.deliveryMap else { return  }
+        let existingAnnotations = deliveryMap.annotations.filter { !($0 is MKUserLocation) }
+            deliveryMap.removeAnnotations(existingAnnotations)
+        
+        guard let location = self.package.location else {
+            return
+        }
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: location.getLatitude(), longitude: location.getLongitude())
+
+        self.deliveryMap.addAnnotation(annotation)
+        self.deliveryMap.showAnnotations([annotation], animated: true)
+    }
+    
+    func loadAdressTF() {
+        guard let location = package.location else {
+                return
+            }
+            
+            let geoCoder = CLGeocoder()
+            let locationCoords = CLLocation(latitude: location.getLatitude(), longitude: location.getLongitude())
+            
+            geoCoder.reverseGeocodeLocation(locationCoords) { (placemarks, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                if let placemark = placemarks?.first {
+                    DispatchQueue.main.async {
+                        self.adressTF.text = placemark.thoroughfare ?? ""
+                        self.postalCodeTF.text = placemark.postalCode ?? ""
+                    }
+                }
+            }
+    }
+    
+    func findLocationFromAddress(address: String) {
+        let geoCoder = CLGeocoder()
+        
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            if let _ = error {
+                return
+            }
+            
+            guard let placemark = placemarks?.first, let location = placemark.location else {
+                return
+            }
+            
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            
+            DispatchQueue.main.async {
+                self.package.location = Coordinates(latitude: latitude, longitude: longitude)
+                self.loadMap()
+            }
+        }
+    }
+    @IBAction func handleSetDeliveryDate(_ sender: Any) {
+        let formatter = ISO8601DateFormatter()
+        self.package.deliveryDate = formatter.string(from: self.deliveryDatePicker.date)
+        
+    }
+    
+    @IBAction func createPackage(_ sender: Any) {
+        guard self.package.location != nil else {
+            self.statusLabel.isHidden = false
+            self.statusLabel.textColor = .red
+            self.statusLabel.text = "Veuillez renseigner une adresse"
+            return
+        }
+        
+        guard package.deliveryDate != nil else {
+            self.statusLabel.isHidden = false
+            self.statusLabel.textColor = .red
+            self.statusLabel.text = "Veuillez renseigner une date de livraison"
+            return
+        }
+        
+        self.package.packageId = 0
+        self.package.deliveryProof = nil
+        self.createPackage()
+    }
+    
+    func createPackage() {
+        packageService.createPackageForDelivery(tourId: self.tourId, package: self.package) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    self.navigationController?.popViewController(animated: true)
+                case .failure(let error):
+                    let alertController = UIAlertController(title: "Erreur", message: error.localizedDescription, preferredStyle: .alert)
+                    let retryAction = UIAlertAction(title: "Réessayer", style: .default) { _ in
+                        self.createPackage()
+                    }
+                    let cancelAction = UIAlertAction(title: "Annuler", style: .cancel)
+                    alertController.addAction(retryAction)
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true)
+                }
+            }
+        }
+    }
+}
+
+extension CreatePackageViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.statusLabel.isHidden = true
+        guard let address = self.adressTF.text, !address.isEmpty else {
+            self.statusLabel.isHidden = false
+            self.statusLabel.textColor = .red
+            self.statusLabel.text = "L'adresse ne peut pas être vide"
+            return
+        }
+        
+        guard let postalCode = self.postalCodeTF.text, !postalCode.isEmpty else {
+            self.statusLabel.isHidden = false
+            self.statusLabel.textColor = .red
+            self.statusLabel.text = "Le code postal ne peut pas être vide"
+            return
+        }
+        
+        findLocationFromAddress(address: "\(address), \(postalCode)")
+    }
+}
+
+extension CreatePackageViewController : MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: any MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else { return nil }
+        let identifier = "PackageAnnotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            annotationView?.isDraggable = true
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        annotationView?.markerTintColor = .systemBlue
+        annotationView?.glyphImage = UIImage(systemName: "shippingbox")
+        
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView : MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
+        if newState == .ending {
+            annotationView.dragState = .none
+            if let movedAnnotation = annotationView.annotation {
+                if self.package.location == nil {
+                    self.package.location = Coordinates(latitude: movedAnnotation.coordinate.latitude, longitude: movedAnnotation.coordinate.longitude)
+                } else {
+                    self.package.location?.setLatitude(movedAnnotation.coordinate.latitude)
+                    self.package.location?.setLongitude(movedAnnotation.coordinate.longitude)
+                }
+            }
+        }
+    }
+
 }

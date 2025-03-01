@@ -16,4 +16,5 @@ protocol PackageProtocol {
     func getPackagesByTourId(tourId: Int, completion: @escaping (Result<[PackageDTO], Error>) -> Void)
     func updateDeliveryManAssigned(updateAssignedToDTO: UpdateAssignedToDTO, completion: @escaping (Result<Bool, Error>) -> Void)
     func getDeliveryProof(deliveryProofPath: String, completion: @escaping (Result<Data, Error>) -> Void)
+    func createPackageForDelivery(tourId: Int, package: PackageDTO , completion: @escaping (Result<Bool, Error>) -> Void)
 }

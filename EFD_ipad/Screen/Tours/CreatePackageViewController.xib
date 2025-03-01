@@ -17,6 +17,7 @@
                 <outlet property="deliveryDatePicker" destination="tTR-Dt-ZqP" id="DXF-kJ-Sjl"/>
                 <outlet property="deliveryMap" destination="mdJ-an-6Tz" id="Ybb-3K-hPS"/>
                 <outlet property="postalCodeTF" destination="9T9-sm-YkD" id="GcW-5d-Crk"/>
+                <outlet property="statusLabel" destination="utd-6d-xXI" id="QrZ-sY-Ea1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -55,6 +56,9 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="SxZ-ih-L0M"/>
                     </constraints>
+                    <connections>
+                        <action selector="handleSetDeliveryDate:" destination="-1" eventType="valueChanged" id="qmF-yS-ML3"/>
+                    </connections>
                 </datePicker>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adresse: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuI-2m-NnL">
                     <rect key="frame" x="20" y="186" width="71" height="21"/>
@@ -81,7 +85,19 @@
                     <buttonConfiguration key="configuration" style="filled" title="Créer">
                         <color key="baseBackgroundColor" name="AccentColor"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="createPackage:" destination="-1" eventType="touchUpInside" id="XIz-Vg-hEJ"/>
+                    </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utd-6d-xXI">
+                    <rect key="frame" x="789" y="94" width="557" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="557" id="GNm-od-itn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -100,6 +116,8 @@
                 <constraint firstItem="mdJ-an-6Tz" firstAttribute="top" secondItem="V2I-u0-sYX" secondAttribute="bottom" constant="19" id="b0N-UN-dU4"/>
                 <constraint firstItem="V2I-u0-sYX" firstAttribute="trailing" secondItem="mdJ-an-6Tz" secondAttribute="trailing" id="bXe-xe-a0c"/>
                 <constraint firstItem="mdJ-an-6Tz" firstAttribute="top" secondItem="9T9-sm-YkD" secondAttribute="bottom" constant="21" id="bzW-v8-0sQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="utd-6d-xXI" secondAttribute="trailing" constant="20" id="bzY-0o-PkW"/>
+                <constraint firstItem="utd-6d-xXI" firstAttribute="top" secondItem="VED-mU-o5s" secondAttribute="bottom" constant="17" id="cBg-Ho-XeH"/>
                 <constraint firstItem="4OV-fK-eeG" firstAttribute="leading" secondItem="blc-BJ-emE" secondAttribute="trailing" constant="8" symbolic="YES" id="k1n-OL-Xft"/>
                 <constraint firstItem="tTR-Dt-ZqP" firstAttribute="leading" secondItem="9T9-sm-YkD" secondAttribute="trailing" constant="8" symbolic="YES" id="sKi-14-Oay"/>
             </constraints>

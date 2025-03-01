@@ -351,4 +351,52 @@ class PackageService: PackageProtocol {
         }
         task.resume()
     }
+    
+    func createPackageForDelivery(tourId: Int, package: PackageDTO, completion: @escaping (Result<Bool, any Error>) -> Void) {
+        
+        let packageToCreate = CreatePackageDTO(tourId: tourId, package: package)
+        var request = URLRequest(url: URL(string: self.packageURL + "createPackage")!)
+        request.httpMethod = "POST"
+        
+        if let jsonData = try? JSONEncoder().encode(packageToCreate) {
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                print("JSON envoyé : \(jsonString)")
+            }
+            request.httpBody = jsonData
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, let data = data else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Réponse invalide"])))
+                return
+            }
+            
+            
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("Réponse brute du serveur: \(responseString)")
+            }
+            
+
+            if httpResponse.statusCode == 400 {
+                let errorMessage = String(data: data, encoding: .utf8) ?? "Erreur inconnue"
+                print("Erreur API : \(errorMessage)")
+                completion(.failure(NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: errorMessage])))
+                return
+            }
+            
+            
+            do {
+                let _ = try JSONDecoder().decode(CommonSuccessResponse.self, from: data)
+                completion(.success(true))
+            } catch {
+                print(" Erreur de décodage JSON : \(error.localizedDescription)")
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
 }

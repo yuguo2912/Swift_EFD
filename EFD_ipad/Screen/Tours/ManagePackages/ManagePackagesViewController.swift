@@ -87,6 +87,7 @@ class ManagePackagesViewController: UIViewController {
     
     @IBAction func handleAddPackage(_ sender: Any) {
         let addPackageVC = CreatePackageViewController()
+        addPackageVC.tourId = self.tourId
         self.navigationController?.pushViewController(addPackageVC, animated: true)
     }
     
