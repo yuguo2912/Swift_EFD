@@ -18,7 +18,7 @@
                 <outlet property="lastNameTF" destination="8OX-9F-dOd" id="uMH-aw-fwg"/>
                 <outlet property="mailTF" destination="odc-ce-JMr" id="uUN-24-8Bf"/>
                 <outlet property="modifyProfileInfoBT" destination="GGe-4a-hxl" id="KQ8-vM-sBn"/>
-                <outlet property="newPasswordTF" destination="i5M-Pr-FkT" id="wAi-KR-hkt"/>
+                <outlet property="newPasswordTF" destination="LZu-w0-adN" id="AH2-gi-dnq"/>
                 <outlet property="rolePicker" destination="t0Y-KL-iek" id="MR3-gN-SFL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -172,6 +172,9 @@
                     <buttonConfiguration key="configuration" style="filled" title="Changer le mot de passe">
                         <color key="baseBackgroundColor" systemColor="systemOrangeColor"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="changePassword:" destination="-1" eventType="touchUpInside" id="ZB7-NT-uXd"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

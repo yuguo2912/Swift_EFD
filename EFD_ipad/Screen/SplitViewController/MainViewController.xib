@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="EFD_ipad" customModuleProvider="target">
             <connections>
+                <outlet property="noDeliveriesLabel" destination="4RC-4m-KD5" id="ylf-y2-ZGH"/>
+                <outlet property="todeayDeliveriesTableView" destination="qjJ-Qr-xER" id="Pe0-Y7-8DD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,12 +27,20 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qjJ-Qr-xER">
+                    <rect key="frame" x="20" y="123" width="1140" height="677"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="qjJ-Qr-xER" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="5eq-6t-lHg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qjJ-Qr-xER" secondAttribute="trailing" constant="20" id="IdE-a2-USU"/>
+                <constraint firstItem="qjJ-Qr-xER" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="SDa-x7-Tt1"/>
                 <constraint firstItem="4RC-4m-KD5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eSq-vy-ojO"/>
                 <constraint firstItem="4RC-4m-KD5" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="iKx-bt-bwn"/>
+                <constraint firstItem="qjJ-Qr-xER" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="99" id="yo3-HP-Jud"/>
             </constraints>
             <point key="canvasLocation" x="138.81355932203391" y="-1.4634146341463414"/>
         </view>

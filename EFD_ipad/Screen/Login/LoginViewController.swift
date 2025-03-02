@@ -36,9 +36,17 @@ class LoginViewController: UIViewController {
                 switch result {
                 case .success(let token):
                     TokenManager.getInstance().saveToken(token)
-                    UserDefaults.standard.set(TokenManager.getInstance().getToken(), forKey: "token")
-                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                    (UIApplication.shared.delegate as? AppDelegate)?.showMainScreen(window: (UIApplication.shared.delegate as! AppDelegate).window!)
+                    
+                    if TokenManager.getInstance().getTokenClaims()?.role == Role.ADMIN.rawValue {
+                        UserDefaults.standard.set(TokenManager.getInstance().getToken(), forKey: "token")
+                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                        (UIApplication.shared.delegate as? AppDelegate)?.showMainScreen(window: (UIApplication.shared.delegate as! AppDelegate).window!)
+                    }else {
+                        self.errorLabel.text = "Vous n'êtes pas autorisé à accéder à cette application"
+                        self.errorLabel.isHidden = false
+                        TokenManager.getInstance().deleteToken()
+                    }
+                    
                 case .failure(let error):
                     print("Erreur de connexion : \(error.localizedDescription)")
                     self.errorLabel.text = error.localizedDescription

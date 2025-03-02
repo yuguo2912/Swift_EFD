@@ -7,11 +7,15 @@
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="EFD_ipad" customModuleProvider="target">
             <connections>
+                <outlet property="deliverymanPicker" destination="lNo-5I-IPd" id="g9R-O5-rOa"/>
+                <outlet property="map" destination="Qmn-b6-kYo" id="usL-Lt-5BW"/>
+                <outlet property="refreshButton" destination="H7Y-kv-Aj3" id="M9M-vY-uIu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -27,63 +31,50 @@
                     </constraints>
                     <standardMapConfiguration key="preferredConfiguration"/>
                 </mapView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tournée :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6N-MP-OLh">
-                    <rect key="frame" x="517" y="46" width="72" height="20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyq-JX-jo9">
-                    <rect key="frame" x="896" y="44" width="45" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeO-he-O5e">
-                    <rect key="frame" x="597" y="39" width="225" height="34"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="225" id="D47-n8-fpk"/>
-                    </constraints>
-                </pickerView>
-                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUO-41-XYJ">
-                    <rect key="frame" x="135" y="39" width="225" height="34"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="225" id="7Gq-0v-Eab"/>
-                    </constraints>
-                </pickerView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Livreur :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXR-Vh-rxZ">
-                    <rect key="frame" x="66" y="46" width="61.5" height="20.5"/>
+                    <rect key="frame" x="364.5" y="28" width="61.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="pcH-ca-zzW">
-                    <rect key="frame" x="994" y="36" width="120" height="40"/>
-                </datePicker>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7Y-kv-Aj3">
+                    <rect key="frame" x="990.5" y="21" width="99.5" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Actualiser"/>
+                    <connections>
+                        <action selector="refreshLocation:" destination="-1" eventType="touchUpInside" id="sOH-Mp-dTK"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNo-5I-IPd">
+                    <rect key="frame" x="433.5" y="24" width="313" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="XI7-Oh-oAJ"/>
+                        <constraint firstAttribute="width" constant="313" id="ph4-uG-gIy"/>
+                    </constraints>
+                    <menu key="menu" id="Ea6-ER-QJX">
+                        <children>
+                            <command title="Item 1" id="78a-bf-ewu"/>
+                            <command title="Item 2" id="N7Y-bR-IQR"/>
+                        </children>
+                    </menu>
+                    <state key="normal" title="Livreur"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="cUO-41-XYJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="4uL-Aj-VrN"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pcH-ca-zzW" secondAttribute="trailing" constant="66" id="A6h-Mv-UKZ"/>
-                <constraint firstItem="U6N-MP-OLh" firstAttribute="centerY" secondItem="pcH-ca-zzW" secondAttribute="centerY" id="Fse-4J-Ipu"/>
-                <constraint firstItem="Dyq-JX-jo9" firstAttribute="leading" secondItem="aeO-he-O5e" secondAttribute="trailing" constant="74" id="G8H-xh-zyp"/>
-                <constraint firstItem="Dyq-JX-jo9" firstAttribute="centerY" secondItem="pcH-ca-zzW" secondAttribute="centerY" constant="-1.5" id="IaV-DG-5Md"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Qmn-b6-kYo" secondAttribute="trailing" constant="20" id="Ktd-lX-fkb"/>
-                <constraint firstItem="pcH-ca-zzW" firstAttribute="leading" secondItem="Dyq-JX-jo9" secondAttribute="trailing" constant="53" id="M0H-eA-keW"/>
-                <constraint firstItem="U6N-MP-OLh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="22" id="Neu-hP-s8M"/>
-                <constraint firstAttribute="trailing" secondItem="aeO-he-O5e" secondAttribute="trailing" constant="358" id="Obx-n5-Xfi"/>
-                <constraint firstItem="Qmn-b6-kYo" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="P6G-JP-qIO"/>
-                <constraint firstItem="pcH-ca-zzW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="12" id="Roh-Aa-Vuw"/>
-                <constraint firstItem="cUO-41-XYJ" firstAttribute="centerY" secondItem="IXR-Vh-rxZ" secondAttribute="centerY" id="VOV-4g-yy4"/>
-                <constraint firstItem="Qmn-b6-kYo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="fyv-EB-RfW"/>
-                <constraint firstItem="Qmn-b6-kYo" firstAttribute="top" secondItem="cUO-41-XYJ" secondAttribute="bottom" constant="8" id="ipG-1y-aRj"/>
-                <constraint firstItem="IXR-Vh-rxZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="66" id="kK1-F4-vDq"/>
-                <constraint firstItem="aeO-he-O5e" firstAttribute="bottom" secondItem="cUO-41-XYJ" secondAttribute="bottom" id="kKu-l8-XMA"/>
-                <constraint firstItem="cUO-41-XYJ" firstAttribute="centerY" secondItem="U6N-MP-OLh" secondAttribute="centerY" id="pgy-FC-UJl"/>
-                <constraint firstItem="cUO-41-XYJ" firstAttribute="leading" secondItem="IXR-Vh-rxZ" secondAttribute="trailing" constant="7.5" id="rOG-Kx-Qe6"/>
-                <constraint firstItem="aeO-he-O5e" firstAttribute="top" secondItem="cUO-41-XYJ" secondAttribute="top" id="rlh-BR-dIj"/>
-                <constraint firstItem="aeO-he-O5e" firstAttribute="leading" secondItem="U6N-MP-OLh" secondAttribute="trailing" constant="8" symbolic="YES" id="sC6-1W-iEo"/>
+                <constraint firstItem="lNo-5I-IPd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="01g-Ed-9wn"/>
+                <constraint firstItem="Qmn-b6-kYo" firstAttribute="top" secondItem="H7Y-kv-Aj3" secondAttribute="bottom" constant="25" id="74o-ms-cIH"/>
+                <constraint firstItem="Qmn-b6-kYo" firstAttribute="top" secondItem="IXR-Vh-rxZ" secondAttribute="bottom" constant="32.5" id="A1Z-5w-hR4"/>
+                <constraint firstItem="Qmn-b6-kYo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="BFO-rn-BOz"/>
+                <constraint firstItem="IXR-Vh-rxZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="4" id="FMI-df-yn1"/>
+                <constraint firstItem="lNo-5I-IPd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="S49-5e-MTQ"/>
+                <constraint firstItem="lNo-5I-IPd" firstAttribute="leading" secondItem="IXR-Vh-rxZ" secondAttribute="trailing" constant="7.5" id="U7x-Bk-6Ut"/>
+                <constraint firstItem="Qmn-b6-kYo" firstAttribute="top" secondItem="lNo-5I-IPd" secondAttribute="bottom" constant="27" id="UuY-a3-mad"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Qmn-b6-kYo" secondAttribute="trailing" constant="20" id="dkK-Ke-ufI"/>
+                <constraint firstItem="lNo-5I-IPd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nWv-rn-gKM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="H7Y-kv-Aj3" secondAttribute="trailing" constant="90" id="v2r-PF-a7h"/>
+                <constraint firstItem="Qmn-b6-kYo" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="xAb-fU-FeB"/>
             </constraints>
             <point key="canvasLocation" x="108.81355932203391" y="19.756097560975608"/>
         </view>

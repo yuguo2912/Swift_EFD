@@ -12,17 +12,18 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var changePasswordBT: UIButton!
     @IBOutlet weak var modifyProfileInfoBT: UIButton!
     @IBOutlet weak var deleteAccountBT: UIButton!
-    
+
+    @IBOutlet weak var newPasswordTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
     @IBOutlet weak var firstNameTF: UITextField!
     @IBOutlet weak var mailTF: UITextField!
-    @IBOutlet var newPasswordTF: UIView!
+    
     @IBOutlet weak var confirmPasswordTF: UITextField!
     
     @IBOutlet weak var rolePicker: UIPickerView!
     
-    private let adminService = AdminService()
-    private let userService = UserService()
+    let adminService = AdminService.getInstance()
+    let userService = UserService.getInstance()
     
     var user: User?
     var userId: Int?
@@ -129,6 +130,52 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    @IBAction func changePassword(_ sender: Any) {
+        guard let newPwd = self.newPasswordTF.text else { return }
+        guard let confirmPwd = self.confirmPasswordTF.text else { return }
+        
+        if newPwd.isEmpty || confirmPwd.isEmpty {
+            let alert = UIAlertController(title: "Erreur", message: "Le nouveau mot de passe et la confirmation ne peuvent pas être vides", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        if newPwd != confirmPwd {
+            let alert = UIAlertController(title: "Erreur", message: "Le nouveau mot de passe et la confirmation ne sont pas identiques", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        self.updatePassword(newPwd)
+    }
+    
+    func updatePassword(_ newPwd: String) {
+        let id = self.userId ?? TokenManager.getInstance().getTokenClaims()!.id
+        
+        let changePassword = ChangePasswordDTO(userId: id, password: newPwd)
+        userService.changePassword(changePasswordDTO: changePassword) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let success):
+                    self.newPasswordTF.text = ""
+                    self.confirmPasswordTF.text = ""
+                    let alertController = UIAlertController(title: "Success", message: "Mot de passe modifié avec succès", preferredStyle: .alert)
+                    let actionOk = UIAlertAction(title: "OK", style: .default) { _ in }
+                    alertController.addAction(actionOk)
+                    self.present(alertController, animated: true)
+                case .failure(let error):
+                    let alertController = UIAlertController(title: "Erreur", message: error.localizedDescription, preferredStyle: .alert)
+                    let actionOk = UIAlertAction(title: "OK", style: .default) { _ in }
+                    alertController.addAction(actionOk)
+                    self.present(alertController, animated: true)
+                }
+            }
+        }
+    }
 }
 
 

@@ -29,7 +29,7 @@ class MenuController: UITableViewController {
     }
         
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? vcList.count : 1  // Section 0 = menu, Section 1 = bouton déconnexion
+        return section == 0 ? vcList.count : 1
     }
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,7 +52,7 @@ class MenuController: UITableViewController {
         if indexPath.section == 0 {
             delegate?.didTapMenu(index: indexPath.row)
         } else {
-            delegate?.didTapLogout() // Appelle la méthode de déconnexion
+            delegate?.didTapLogout()
         }
     }
     
